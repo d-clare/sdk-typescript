@@ -1,0 +1,3 @@
+[submodule "submodules/sdk-net"]
+	path = submodules/sdk-net
+	url = https://github.com/d-clare/sdk-net.git

@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35728.132
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "DClare.Sdk.TypeScript", "DClare.Sdk.TypeScript.csproj", "{76D2C431-9E53-4481-9B8A-46E8468442FB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DClare.Sdk", "submodules\sdk-net\src\DClare.Sdk\DClare.Sdk.csproj", "{035C0071-8898-4CA9-B077-0E6642F51AF3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{76D2C431-9E53-4481-9B8A-46E8468442FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76D2C431-9E53-4481-9B8A-46E8468442FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76D2C431-9E53-4481-9B8A-46E8468442FB}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{76D2C431-9E53-4481-9B8A-46E8468442FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76D2C431-9E53-4481-9B8A-46E8468442FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76D2C431-9E53-4481-9B8A-46E8468442FB}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{035C0071-8898-4CA9-B077-0E6642F51AF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{035C0071-8898-4CA9-B077-0E6642F51AF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{035C0071-8898-4CA9-B077-0E6642F51AF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{035C0071-8898-4CA9-B077-0E6642F51AF3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
