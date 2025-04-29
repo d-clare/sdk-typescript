@@ -52,5 +52,5 @@ export class ToolsetDefinition extends ReferenceableComponentDefinition {
    * Gets the toolset's type based on which definition is present (either MCP or OpenAPI)
    */
   @Exclude()
-  type: string;
+  type?: string;
 }

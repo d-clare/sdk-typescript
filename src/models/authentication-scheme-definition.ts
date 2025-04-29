@@ -37,7 +37,7 @@ export class AuthenticationSchemeDefinition extends Hydrator<AuthenticationSchem
    * Gets the name of the authentication scheme
    */
   @Exclude()
-  scheme: string;
+  scheme?: string;
 
   /**
    * Gets/sets the name of the secret, if any, used to configure the authentication scheme

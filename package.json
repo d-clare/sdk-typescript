@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "prepare": "git submodule update --remote --merge",
+    "prepare": "git submodule update --remote --init",
     "build": "tsc && vite build",
     "test": "vitest run",
     "coverage": "vitest run --coverage"

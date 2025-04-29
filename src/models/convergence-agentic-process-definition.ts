@@ -21,6 +21,7 @@ import { Hydrator } from '../hydrator';
 import { AgentDefinition } from './agent-definition';
 import { ConvergenceStrategyDefinition } from './convergence-strategy-definition';
 import { Type } from 'class-transformer';
+import { RecordTransform } from '../transformers/record-transform';
 
 /**
  * Represents an agentic process in which multiple specialized agents are invoked using tailored sub-prompts, and a designated function synthesizes their responses into a single cohesive result.  A dedicated kernel function may optionally be used to split the initial user prompt into sub-prompts aligned with each agent's expertise.
@@ -38,6 +39,7 @@ export class ConvergenceAgenticProcessDefinition extends Hydrator<ConvergenceAge
   /**
    * Gets/sets the collection of named agents that participate in this process
    */
+  @RecordTransform(AgentDefinition)
   agents: Record<string, AgentDefinition>;
 
   /**

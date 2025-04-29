@@ -51,5 +51,5 @@ export class AgentDefinition extends ReferenceableComponentDefinition {
    * Gets the agent's type
    */
   @Exclude()
-  type: string;
+  type?: string;
 }

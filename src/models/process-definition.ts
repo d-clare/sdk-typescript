@@ -51,5 +51,5 @@ export class ProcessDefinition extends Hydrator<ProcessDefinition> {
    * Gets the type of agentic process
    */
   @Exclude()
-  type: string;
+  type?: string;
 }

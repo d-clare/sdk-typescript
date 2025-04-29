@@ -25,7 +25,7 @@ import { KernelDefinition } from './kernel-definition';
 import { MemoryDefinition } from './memory-definition';
 import { AgentDefinition } from './agent-definition';
 import { ProcessDefinition } from './process-definition';
-import { Type } from 'class-transformer';
+import { RecordTransform } from '../transformers/record-transform';
 
 /**
  * Represents the definition of a collection of reusable components
@@ -54,42 +54,42 @@ export class ComponentCollectionDefinition extends Hydrator<ComponentCollectionD
   /**
    * Gets/sets a name/definition mapping, if any, of reusable authentication policies
    */
-  @Type(() => AuthenticationPolicyDefinition)
+  @RecordTransform(AuthenticationPolicyDefinition)
   authentications?: Record<string, AuthenticationPolicyDefinition>;
 
   /**
    * Gets/sets a name/definition mapping, if any, of reusable toolsets
    */
-  @Type(() => ToolsetDefinition)
+  @RecordTransform(ToolsetDefinition)
   toolsets?: Record<string, ToolsetDefinition>;
 
   /**
    * Gets/sets a name/definition mapping, if any, of reusable functions
    */
-  @Type(() => KernelFunctionDefinition)
+  @RecordTransform(KernelFunctionDefinition)
   functions?: Record<string, KernelFunctionDefinition>;
 
   /**
    * Gets/sets a name/definition mapping, if any, of reusable kernels
    */
-  @Type(() => KernelDefinition)
+  @RecordTransform(KernelDefinition)
   kernels?: Record<string, KernelDefinition>;
 
   /**
    * Gets/sets a name/definition mapping, if any, of reusable memories
    */
-  @Type(() => MemoryDefinition)
+  @RecordTransform(MemoryDefinition)
   memories?: Record<string, MemoryDefinition>;
 
   /**
    * Gets/sets a name/definition mapping, if any, of reusable agents
    */
-  @Type(() => AgentDefinition)
+  @RecordTransform(AgentDefinition)
   agents?: Record<string, AgentDefinition>;
 
   /**
    * Gets/sets a name/definition mapping, if any, of reusable agentic processes
    */
-  @Type(() => ProcessDefinition)
+  @RecordTransform(ProcessDefinition)
   processes?: Record<string, ProcessDefinition>;
 }

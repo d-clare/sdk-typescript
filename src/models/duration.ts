@@ -58,29 +58,29 @@ export class Duration extends Hydrator<Duration> {
    * Gets the the duration's total amount of days
    */
   @Exclude()
-  totalDays: number;
+  totalDays?: number;
 
   /**
    * Gets the the duration's total amount of hours
    */
   @Exclude()
-  totalHours: number;
+  totalHours?: number;
 
   /**
    * Gets the the duration's total amount of minutes
    */
   @Exclude()
-  totalMinutes: number;
+  totalMinutes?: number;
 
   /**
    * Gets the the duration's total amount of seconds
    */
   @Exclude()
-  totalSeconds: number;
+  totalSeconds?: number;
 
   /**
    * Gets the the duration's total amount of milliseconds
    */
   @Exclude()
-  totalMilliseconds: number;
+  totalMilliseconds?: number;
 }

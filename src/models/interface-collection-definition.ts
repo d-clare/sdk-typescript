@@ -20,7 +20,7 @@
 import { Hydrator } from '../hydrator';
 import { AgentInterfaceDefinition } from './agent-interface-definition';
 import { ProcessInterfaceDefinition } from './process-interface-definition';
-import { Type } from 'class-transformer';
+import { RecordTransform } from '../transformers/record-transform';
 
 /**
  * Represents a collection of the interfaces exposed by the application
@@ -38,12 +38,12 @@ export class InterfaceCollectionDefinition extends Hydrator<InterfaceCollectionD
   /**
    * Gets/sets a name/definition mapping of the agent interfaces exposed by the application
    */
-  @Type(() => AgentInterfaceDefinition)
+  @RecordTransform(AgentInterfaceDefinition)
   agents?: Record<string, AgentInterfaceDefinition>;
 
   /**
    * Gets/sets a name/definition mapping of the process interfaces exposed by the application
    */
-  @Type(() => ProcessInterfaceDefinition)
+  @RecordTransform(ProcessInterfaceDefinition)
   processes?: Record<string, ProcessInterfaceDefinition>;
 }

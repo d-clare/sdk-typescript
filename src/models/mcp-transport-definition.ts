@@ -21,6 +21,7 @@ import { Hydrator } from '../hydrator';
 import { McpHttpTransportDefinition } from './mcp-http-transport-definition';
 import { McpStdioTransportDefinition } from './mcp-stdio-transport-definition';
 import { Exclude, Type } from 'class-transformer';
+import { McpTransportType } from '../enums/mcp-transport-type';
 
 /**
  * Represents the definition of the transport to use to connect to an MCP server
@@ -34,6 +35,14 @@ export class McpTransportDefinition extends Hydrator<McpTransportDefinition> {
       if (model.stdio) this.stdio = new McpStdioTransportDefinition(model.stdio);
       this.options = model.options ? model.options : {};
     }
+    Object.defineProperty(this, 'type', {
+      get () {
+        return this?.http != null ? McpTransportType.Http :
+          this?.stdio != null ? McpTransportType.Stdio : '';
+      },
+      enumerable: true,
+      configurable: true
+    });
   }
 
   /**
@@ -57,5 +66,5 @@ export class McpTransportDefinition extends Hydrator<McpTransportDefinition> {
    * Gets the MCP transport's type based on which definition is present (either `Http` or `Stdio`)
    */
   @Exclude()
-  type: string;
+  type?: string;
 }

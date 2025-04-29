@@ -21,6 +21,7 @@ import { Hydrator } from '../hydrator';
 import { AgentDefinition } from './agent-definition';
 import { CollaborationStrategyDefinition } from './collaboration-strategy-definition';
 import { Type } from 'class-transformer';
+import { RecordTransform } from '../transformers/record-transform';
 
 /**
  * Represents an agentic process in which multiple agents perform their tasks sequentially with configurable selection and termination strategies
@@ -38,6 +39,7 @@ export class CollaborationAgenticProcessDefinition extends Hydrator<Collaboratio
   /**
    * Gets/sets the collection of named agents that participate in this process
    */
+  @RecordTransform(AgentDefinition)
   agents: Record<string, AgentDefinition>;
 
   /**

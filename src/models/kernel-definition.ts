@@ -22,6 +22,7 @@ import { ReasoningCapabilityDefinition } from './reasoning-capability-definition
 import { EmbeddingCapabilityDefinition } from './embedding-capability-definition';
 import { ToolsetDefinition } from './toolset-definition';
 import { Type } from 'class-transformer';
+import { RecordTransform } from '../transformers/record-transform';
 
 /**
  * Represents the configuration of a kernel system capable of performing AI inference operations, such as language model completions, chat interactions, or vector embeddings
@@ -57,6 +58,6 @@ export class KernelDefinition extends ReferenceableComponentDefinition {
   /**
    * Gets/sets a key/definition mapping of the toolsets available to the kernel
    */
-  @Type(() => ToolsetDefinition)
+  @RecordTransform(ToolsetDefinition)
   toolsets?: Record<string, ToolsetDefinition>;
 }

@@ -43,7 +43,7 @@ export class AuthenticationPolicyDefinition extends ReferenceableComponentDefini
    * Gets the configured authentication scheme
    */
   @Exclude()
-  scheme: string;
+  scheme?: string;
 
   /**
    * Gets/sets the `ApiKey` authentication scheme to use, if any

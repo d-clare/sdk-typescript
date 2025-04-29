@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 
+import 'reflect-metadata';
+
 export * from './enums';
 export * from './models';
 export * from './serialization';

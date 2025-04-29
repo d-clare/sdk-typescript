@@ -32,7 +32,13 @@ export class AgentCommunicationChannelDefinition extends Hydrator<AgentCommunica
     if (model) {
       if (model.a2A) this.a2A = new A2AChannelConfiguration(model.a2A);
     }
-    this.type = model?.a2A != null ? AgentCommunicationChannelType.A2A : '';
+    Object.defineProperty(this, 'type', {
+      get () {
+        return this?.a2A != null ? AgentCommunicationChannelType.A2A : '';
+      },
+      enumerable: true,
+      configurable: true
+    });
   }
 
   /**
@@ -46,5 +52,5 @@ export class AgentCommunicationChannelDefinition extends Hydrator<AgentCommunica
    * Gets the agent's type
    */
   @Exclude()
-  type: string;
+  type?: string;
 }

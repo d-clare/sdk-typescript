@@ -38,7 +38,13 @@ ${
                 },
                 Constructor = new List<string>()
                 {
-                    "this.type = model?.a2A != null ? AgentCommunicationChannelType.A2A : '';",
+                    @"Object.defineProperty(this, 'type', {
+      get () {
+        return this?.a2A != null ? AgentCommunicationChannelType.A2A : '';
+      },
+      enumerable: true,
+      configurable: true
+    });",
                 }
             }
         },
@@ -52,6 +58,26 @@ ${
                 Constructor = new List<string>()
                 {
                     "this.scheme = AuthenticationScheme.Bearer;",
+                }
+            }
+        },
+        { 
+            "McpTransportDefinition" , new
+            {
+                Imports = new List<string>() 
+                {
+                    "import { McpTransportType } from '../enums/mcp-transport-type';",
+                },
+                Constructor = new List<string>()
+                {
+                    @"Object.defineProperty(this, 'type', {
+      get () {
+        return this?.http != null ? McpTransportType.Http :
+          this?.stdio != null ? McpTransportType.Stdio : '';
+      },
+      enumerable: true,
+      configurable: true
+    });",
                 }
             }
         },
@@ -206,6 +232,8 @@ ${
               ;
     }
 
+    bool isRecordProp(Property p) => p.Type.Name.StartsWith("Record") && !p.Type.TypeArguments.All(arg => arg.IsPrimitive || CleanupName(arg.Name) == "any");
+
     string Imports(Record r)
     {
         string output = "";
@@ -236,15 +264,19 @@ ${
             .Aggregate("", (all, import) => $"{all}{import}")
             ;
         var hasIgnoredProperties = r.Properties.Any(p => p.Attributes.Any(a => a.Name == "JsonIgnore") && !IsOverride(r, p));
-        var hasSpecificNamedProperties = r.Properties.Any(p => p.Attributes.Any(a => a.Name == "JsonPropertyName" && a.Value != p.name));
-        var hasType = importedTypes.Any(t => CleanupName(t.OriginalName) != "JsonSchema");
-        if (hasIgnoredProperties || hasSpecificNamedProperties || hasType)
+        var hasNamedProperties = r.Properties.Any(p => p.Attributes.Any(a => a.Name == "JsonPropertyName" && a.Value != p.name));
+        var hasMappedProperties = importedTypes.Any(t => CleanupName(t.OriginalName) != "JsonSchema") && !r.Properties.All(p => p.Type.IsPrimitive || (p.Type.IsGeneric && p.Type.TypeArguments.All(arg => arg.IsPrimitive)) || isRecordProp(p));
+        if (hasIgnoredProperties || hasNamedProperties || hasMappedProperties)
         {
             var transformerImports = new List<string>();
             if (hasIgnoredProperties) transformerImports.Add("Exclude");
-            if (hasSpecificNamedProperties) transformerImports.Add("Expose");
-            if (hasType) transformerImports.Add("Type");
+            if (hasNamedProperties) transformerImports.Add("Expose");
+            if (hasMappedProperties) transformerImports.Add("Type");
             output += Indent(0, $"import {{ {String.Join(", ", transformerImports)} }} from 'class-transformer';");
+        }
+        if(r.Properties.Any(p => isRecordProp(p)))
+        {
+            output += Indent(0, $"import {{ RecordTransform }} from '../transformers/record-transform';");
         }
         if (Extensions.Keys.Contains(r.Name))
         {
@@ -415,16 +447,24 @@ ${
         }
         var underlyingType = !p.Type.IsGeneric ? ConvertTypeName(p.Type.Name) : ConvertTypeName(p.Type.TypeArguments[p.Type.TypeArguments.Count - 1].Name);
         if (
-            !p.Type.IsPrimitive 
+            !(p.Type.IsPrimitive && !p.Type.IsGeneric) // Record is primitive...?
             && (!p.Type.IsGeneric || !p.Type.TypeArguments.All(a => a.IsPrimitive))
             && underlyingType != "JsonSchema"
             && underlyingType != "any"
             && CleanupName(p.Type.OriginalName) != "Uri"
         )
         {
-            output += Indent(1, $"@Type(() => {underlyingType})");
+            if (!p.Type.Name.StartsWith("Record"))
+            {
+                output += Indent(1, $"@Type(() => {underlyingType})");
+            }
+            else
+            {
+                output += Indent(1, $"@RecordTransform({underlyingType})");
+            }
         }
-        output += Indent(1, $"{p.name}{(p.Type.IsNullable ? "?": "")}: {ConvertTypeName(p.Type.Name)};");
+        var isJsonIgnored = p.Attributes.Any(a => a.Name == "JsonIgnore");
+        output += Indent(1, $"{p.name}{(p.Type.IsNullable || isJsonIgnored  ? "?": "")}: {ConvertTypeName(p.Type.Name)};");
         output += NEW_LINE;
         return output;
     }

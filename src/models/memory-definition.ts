@@ -68,5 +68,5 @@ export class MemoryDefinition extends Hydrator<MemoryDefinition> {
    * Gets the memory's type based on which definition is present
    */
   @Exclude()
-  type: string;
+  type?: string;
 }
