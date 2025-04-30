@@ -1,5 +1,5 @@
 /*
- * Copyright � 2025-Present The DClare Authors
+ * Copyright © 2025-Present The DClare Authors
  *
  * Licensed under the Apache License, Version 2.0 (the "License"),
  * you may not use this file except in compliance with the License.
@@ -16,10 +16,9 @@
 //!\ This file has been generated, any modification will be lost /!\\
 
 import { Hydrator } from '../hydrator';
-import { Exclude } from 'class-transformer';
 
 /**
- * Represents a duration
+ * Represents a duration of time.
  */
 export class Duration extends Hydrator<Duration> {
   constructor(model?: Partial<Duration>) {
@@ -27,57 +26,113 @@ export class Duration extends Hydrator<Duration> {
   }
 
   /**
-   * Gets/sets the numbers of days, if any
+   * The number of days.
    */
   days?: number;
 
   /**
-   * Gets/sets the numbers of hours, if any
+   * The number of hours.
    */
   hours?: number;
 
   /**
-   * Gets/sets the numbers of minutes, if any
+   * The number of minutes.
    */
   minutes?: number;
 
   /**
-   * Gets/sets the numbers of seconds, if any
+   * The number of seconds.
    */
   seconds?: number;
 
   /**
-   * Gets/sets the numbers of milliseconds, if any
+   * The number of milliseconds.
    */
   milliseconds?: number;
 
   /**
-   * Gets the the duration's total amount of days
+   * Gets the total number of milliseconds for the duration.
    */
-  @Exclude()
-  totalDays?: number;
+  get totalMilliseconds(): number {
+    let ms = 0;
+    if (this.days !== undefined) ms += this.days * 24 * 60 * 60 * 1000;
+    if (this.hours !== undefined) ms += this.hours * 60 * 60 * 1000;
+    if (this.minutes !== undefined) ms += this.minutes * 60 * 1000;
+    if (this.seconds !== undefined) ms += this.seconds * 1000;
+    if (this.milliseconds !== undefined) ms += this.milliseconds;
+    return ms;
+  }
 
   /**
-   * Gets the the duration's total amount of hours
+   * Gets the total number of seconds for the duration.
    */
-  @Exclude()
-  totalHours?: number;
+  get totalSeconds(): number {
+    return this.totalMilliseconds / 1000;
+  }
 
   /**
-   * Gets the the duration's total amount of minutes
+   * Gets the total number of minutes for the duration.
    */
-  @Exclude()
-  totalMinutes?: number;
+  get totalMinutes(): number {
+    return this.totalSeconds / 60;
+  }
 
   /**
-   * Gets the the duration's total amount of seconds
+   * Gets the total number of hours for the duration.
    */
-  @Exclude()
-  totalSeconds?: number;
+  get totalHours(): number {
+    return this.totalMinutes / 60;
+  }
 
   /**
-   * Gets the the duration's total amount of milliseconds
+   * Gets the total number of days for the duration.
    */
-  @Exclude()
-  totalMilliseconds?: number;
+  get totalDays(): number {
+    return this.totalHours / 24;
+  }
+
+  /**
+   * A static instance representing a zero duration.
+   */
+  static readonly Zero = new Duration();
+
+  /**
+   * Creates a new Duration from the specified number of days.
+   * @param days The number of days.
+   */
+  static fromDays(days: number): Duration {
+    return new Duration({ days });
+  }
+
+  /**
+   * Creates a new Duration from the specified number of hours.
+   * @param hours The number of hours.
+   */
+  static fromHours(hours: number): Duration {
+    return new Duration({ hours });
+  }
+
+  /**
+   * Creates a new Duration from the specified number of minutes.
+   * @param minutes The number of minutes.
+   */
+  static fromMinutes(minutes: number): Duration {
+    return new Duration({ minutes });
+  }
+
+  /**
+   * Creates a new Duration from the specified number of seconds.
+   * @param seconds The number of seconds.
+   */
+  static fromSeconds(seconds: number): Duration {
+    return new Duration({ seconds });
+  }
+
+  /**
+   * Creates a new Duration from the specified number of milliseconds.
+   * @param milliseconds The number of milliseconds.
+   */
+  static fromMilliseconds(milliseconds: number): Duration {
+    return new Duration({ milliseconds });
+  }
 }

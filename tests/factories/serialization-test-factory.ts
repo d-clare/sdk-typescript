@@ -182,7 +182,7 @@ export const serializationTest = (language: string) => {
     });
 
     it(`should (de)serialize Duration using ${language}`, () => {
-      const sourceOjb = {}; // Duration.fromHours(42); // TODO
+      const sourceOjb = Duration.fromHours(42);
 
       const serialized = serializer(sourceOjb);
       const deserialized = deserializer(Duration, serialized);

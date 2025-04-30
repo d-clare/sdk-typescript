@@ -12,7 +12,7 @@ ${
       settings
           .IncludeProject("DClare.Sdk")
           .DisableUtf8BomGeneration()
-          .OutputFilenameFactory = (file) => $"..\\src\\{directory}\\{GetFileName(file, ".ts")}";
+          .OutputFilenameFactory = (file) => $"..\\src\\{directory}\\generated\\{GetFileName(file, ".ts")}";
           
       settings.PartialRenderingMode = PartialRenderingMode.Combined;
       log = settings.Log;
@@ -56,7 +56,7 @@ ${
             GetSrcDirectory(file).FullName,
             "..\\src",
             directory,
-            "index.ts"
+            "generated\\index.ts"
         });
         using (var stream = System.IO.File.Open(indexPath, exportedFiles.Count == 0 ? System.IO.FileMode.Create : System.IO.FileMode.Append, System.IO.FileAccess.Write, System.IO.FileShare.Read))
         {

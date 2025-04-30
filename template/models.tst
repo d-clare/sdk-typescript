@@ -5,23 +5,28 @@ ${
     
     static ILog log;
     static string directory = "models";
+    static List<string> excludedModels = [
+        "Duration"
+    ];
     static List<string> exportedFiles = [];
     static class options
     {
-      public static char IndentationChar = ' ';
-      public static int IndentationCount = 2;
+      public static char indentationChar = ' ';
+      public static int indentationCount = 2;
     }
     static List<KeyValuePair<string, string>> commentFormattingPatterns = new List<KeyValuePair<string, string>>() {
-        new KeyValuePair<string, string>(@"<see cref=""\w:DClare\.Sdk\.([\w\.]*)"" \/>" , "@see {@link $1}")
+        new KeyValuePair<string, string>(@"<see cref=""\w:DClare\.Sdk\.([\w\.]*)"" \/>" , "@see {@link $1}"),
+        new KeyValuePair<string, string>(@"[Gg]ets/sets the" , "The"),
+        new KeyValuePair<string, string>(@"[Gg]ets/sets a" , "A"),
     };
-    static Dictionary<string, dynamic> Extensions = new Dictionary<string, dynamic>()
+    static Dictionary<string, dynamic> extensions = new Dictionary<string, dynamic>()
     {
         { 
             "ApiKeyAuthenticationSchemeDefinition" , new
             {
                 Imports = new List<string>() 
                 {
-                    "import { AuthenticationScheme } from '../enums/authentication-scheme';",
+                    "import { AuthenticationScheme } from '../../enums/generated/authentication-scheme';",
                 },
                 Constructor = new List<string>()
                 {
@@ -34,7 +39,7 @@ ${
             {
                 Imports = new List<string>() 
                 {
-                    "import { AgentCommunicationChannelType } from '../enums/agent-communication-channel-type';",
+                    "import { AgentCommunicationChannelType } from '../../enums/generated/agent-communication-channel-type';",
                 },
                 Constructor = new List<string>()
                 {
@@ -53,7 +58,7 @@ ${
             {
                 Imports = new List<string>() 
                 {
-                    "import { AuthenticationScheme } from '../enums/authentication-scheme';",
+                    "import { AuthenticationScheme } from '../../enums/generated/authentication-scheme';",
                 },
                 Constructor = new List<string>()
                 {
@@ -66,7 +71,7 @@ ${
             {
                 Imports = new List<string>() 
                 {
-                    "import { McpTransportType } from '../enums/mcp-transport-type';",
+                    "import { McpTransportType } from '../../enums/generated/mcp-transport-type';",
                 },
                 Constructor = new List<string>()
                 {
@@ -97,7 +102,7 @@ ${
             {
                 Imports = new List<string>() 
                 {
-                    "import { OAuth2RequestEncoding } from '../enums/o-auth2-request-encoding';",
+                    "import { OAuth2RequestEncoding } from '../../enums/generated/o-auth2-request-encoding';",
                 },
                 Constructor = new List<string>()
                 {
@@ -110,7 +115,7 @@ ${
             {
                 Imports = new List<string>() 
                 {
-                    "import { AuthenticationScheme } from '../enums/authentication-scheme';",
+                    "import { AuthenticationScheme } from '../../enums/generated/authentication-scheme';",
                 },
                 Constructor = new List<string>()
                 {
@@ -123,7 +128,7 @@ ${
             {
                 Imports = new List<string>() 
                 {
-                    "import { AuthenticationScheme } from '../enums/authentication-scheme';",
+                    "import { AuthenticationScheme } from '../../enums/generated/authentication-scheme';",
                 },
                 Constructor = new List<string>()
                 {
@@ -140,7 +145,7 @@ ${
       settings
           .IncludeProject("DClare.Sdk")
           .DisableUtf8BomGeneration()
-          .OutputFilenameFactory = (file) => $"..\\src\\{directory}\\{GetFileName(file, ".ts")}";
+          .OutputFilenameFactory = (file) => $"..\\src\\{directory}\\generated\\{GetFileName(file, ".ts")}";
           
       settings.PartialRenderingMode = PartialRenderingMode.Combined;
       log = settings.Log;
@@ -148,7 +153,7 @@ ${
 
     bool IsModel(Record r)
     {
-        return r.FullName.StartsWith("DClare.Sdk.Models");
+        return r.FullName.StartsWith("DClare.Sdk.Models") && !excludedModels.Contains(r.Name);
     }
 
     string ToKebabCase(string typeName)
@@ -171,7 +176,7 @@ ${
 
     string Indent(int quantity, string message, Boolean newLine = true)
     {
-        return new String(options.IndentationChar, options.IndentationCount * quantity) + message + (newLine ? NEW_LINE : "");
+        return new String(options.indentationChar, options.indentationCount * quantity) + message + (newLine ? NEW_LINE : "");
     }  
 
     System.IO.DirectoryInfo GetSrcDirectory(File file)
@@ -201,7 +206,7 @@ ${
             GetSrcDirectory(file).FullName,
             "..\\src",
             directory,
-            "index.ts"
+            "generated\\index.ts"
         });
         using (var stream = System.IO.File.Open(indexPath, exportedFiles.Count == 0 ? System.IO.FileMode.Create : System.IO.FileMode.Append, System.IO.FileAccess.Write, System.IO.FileShare.Read))
         {
@@ -244,7 +249,7 @@ ${
         }
         else 
         {
-            output += Indent(0, $"import {{ Hydrator }} from '../hydrator';");
+            output += Indent(0, $"import {{ Hydrator }} from '../../hydrator';");
         }
         var importedTypes = r.Properties
             .SelectMany(p => !p.Type.IsGeneric ?
@@ -257,7 +262,7 @@ ${
         output += importedTypes
             .Select(t => 
                 CleanupName(t.OriginalName) != "JsonSchema" ?
-                    Indent(0, $"import {{ {CleanupName(t.Name)} }} from './{GetFileName(t)}';") :
+                    Indent(0, $"import {{ {CleanupName(t.Name)} }} from '{(CleanupName(t.Name) == "Duration" ? ".." : ".")}/{GetFileName(t)}';") :
                     Indent(0, $"import {{ type JSONSchema as JsonSchema }} from 'json-schema-typed';")
             )
             .Distinct()
@@ -276,14 +281,14 @@ ${
         }
         if(r.Properties.Any(p => isRecordProp(p)))
         {
-            output += Indent(0, $"import {{ RecordTransform }} from '../transformers/record-transform';");
+            output += Indent(0, $"import {{ RecordTransform }} from '../../transformers/record-transform';");
         }
-        if (Extensions.Keys.Contains(r.Name))
+        if (extensions.Keys.Contains(r.Name))
         {
-            dynamic extensions = Extensions[r.Name];
-            if (extensions != null && HasProperty(extensions, "Imports"))
+            dynamic extension = extensions[r.Name];
+            if (extension != null && HasProperty(extension, "Imports"))
             {
-                (extensions.Imports as List<string>).ForEach(line =>
+                (extension.Imports as List<string>).ForEach(line =>
                 {
                     output += Indent(0, line);
                 });
@@ -410,12 +415,12 @@ ${
             }
             output += Indent(2, "}");
         }
-        if (Extensions.Keys.Contains(r.Name))
+        if (extensions.Keys.Contains(r.Name))
         {
-            dynamic extensions = Extensions[r.Name];
-            if (extensions != null && HasProperty(extensions, "Constructor"))
+            dynamic extension = extensions[r.Name];
+            if (extension != null && HasProperty(extension, "Constructor"))
             {
-                (extensions.Constructor as List<string>).ForEach(line =>
+                (extension.Constructor as List<string>).ForEach(line =>
                 {
                     output += Indent(2, line);
                 });

@@ -1,5 +1,5 @@
 /*
- * Copyright © 2025-Present The DClare Authors
+ * Copyright � 2025-Present The DClare Authors
  *
  * Licensed under the Apache License, Version 2.0 (the "License"),
  * you may not use this file except in compliance with the License.
@@ -13,5 +13,15 @@
  * limitations under the License.
  */
 
-export * from './generated';
-export { Duration } from './duration';
+//!\ This file has been generated, any modification will be lost /!\\
+
+import { Hydrator } from '../../hydrator';
+
+/**
+ * Represents the base class for all workflow components
+ */
+export class ComponentDefinition extends Hydrator<ComponentDefinition> {
+  constructor(model?: Partial<ComponentDefinition>) {
+    super(model);
+  }
+}

@@ -1,5 +1,5 @@
 /*
- * Copyright © 2025-Present The DClare Authors
+ * Copyright � 2025-Present The DClare Authors
  *
  * Licensed under the Apache License, Version 2.0 (the "License"),
  * you may not use this file except in compliance with the License.
@@ -13,5 +13,25 @@
  * limitations under the License.
  */
 
-export * from './generated';
-export { Duration } from './duration';
+//!\ This file has been generated, any modification will be lost /!\\
+
+import { Hydrator } from '../../hydrator';
+
+/**
+ * Represents the definition of an OAUTH2 token
+ */
+export class OAuth2TokenDefinition extends Hydrator<OAuth2TokenDefinition> {
+  constructor(model?: Partial<OAuth2TokenDefinition>) {
+    super(model);
+  }
+
+  /**
+   * The security token to use
+   */
+  token: string;
+
+  /**
+   * The type of security token to use
+   */
+  type: string;
+}

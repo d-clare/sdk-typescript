@@ -282,6 +282,69 @@
     <None Update="src\enums\embedding-model-provider.ts">
       <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\EmbeddingModelProvider.cs</CustomToolNamespace>
     </None>
+    <None Update="src\enums\generated\agent-communication-channel-type.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\AgentCommunicationChannelType.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\enums\generated\agent-type.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\AgentType.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\enums\generated\authentication-parameter-placement-location.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\AuthenticationParameterPlacementLocation.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\enums\generated\authentication-scheme.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\AuthenticationScheme.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\enums\generated\d-clare-defaults.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\DClareDefaults.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\enums\generated\embedding-model-provider.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\EmbeddingModelProvider.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\enums\generated\key-value-memory-provider.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\KeyValueMemoryProvider.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\enums\generated\mcp-protocol-version.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\McpProtocolVersion.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\enums\generated\mcp-transport-type.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\McpTransportType.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\enums\generated\memory-injection-position.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\MemoryInjectionPosition.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\enums\generated\memory-type.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\MemoryType.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\enums\generated\naming-convention.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\NamingConvention.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\enums\generated\o-auth2-client-authentication-method.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\OAuth2ClientAuthenticationMethod.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\enums\generated\o-auth2-grant-type.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\OAuth2GrantType.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\enums\generated\o-auth2-request-encoding.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\OAuth2RequestEncoding.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\enums\generated\process-type.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\ProcessType.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\enums\generated\reasoning-model-provider.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\ReasoningModelProvider.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\enums\generated\security-scheme.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\SecurityScheme.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\enums\generated\semantic-version.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\SemanticVersion.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\enums\generated\toolset-type.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\ToolsetType.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\enums\generated\vector-memory-provider.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\VectorMemoryProvider.cs</CustomToolNamespace>
+    </None>
     <None Update="src\enums\key-value-memory-provider.ts">
       <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\KeyValueMemoryProvider.cs</CustomToolNamespace>
     </None>
@@ -416,6 +479,240 @@
     </None>
     <None Update="src\models\file-memory-definition.ts">
       <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\Models\FileMemoryDefinition.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\models\generated\a2a-channel-configuration.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\Models\A2AChannelConfiguration.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\models\generated\agent-communication-channel-definition.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\Models\AgentCommunicationChannelDefinition.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\models\generated\agent-definition.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\Models\AgentDefinition.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\models\generated\agent-interface-definition.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\Models\AgentInterfaceDefinition.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\models\generated\agent-memory-capability-definition.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\Models\AgentMemoryCapabilityDefinition.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\models\generated\agent-memory-entry-metadata-definition.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\Models\AgentMemoryEntryMetadataDefinition.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\models\generated\agent-memory-format-options.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\Models\AgentMemoryFormatOptions.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\models\generated\agent-memory-injection-strategy-definition.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\Models\AgentMemoryInjectionStrategyDefinition.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\models\generated\agent-memory-metadata-resolution-strategy-definition.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\Models\AgentMemoryMetadataResolutionStrategyDefinition.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\models\generated\agent-memory-search-definition.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\Models\AgentMemorySearchDefinition.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\models\generated\agent-memory-storage-policy-definition.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\Models\AgentMemoryStoragePolicyDefinition.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\models\generated\agent-memory-synthetization-strategy-definition.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\Models\AgentMemorySynthetizationStrategyDefinition.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\models\generated\agent-skill-definition.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\Models\AgentSkillDefinition.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\models\generated\api-key-authentication-scheme-definition.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\Models\Authentication\ApiKeyAuthenticationSchemeDefinition.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\models\generated\authentication-parameter-placement-definition.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\Models\Authentication\AuthenticationParameterPlacementDefinition.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\models\generated\authentication-policy-definition.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\Models\AuthenticationPolicyDefinition.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\models\generated\authentication-scheme-definition.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\Models\AuthenticationSchemeDefinition.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\models\generated\bearer-authentication-scheme-definition.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\Models\Authentication\BearerAuthenticationSchemeDefinition.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\models\generated\collaboration-agentic-process-definition.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\Models\Processes\CollaborationAgenticProcessDefinition.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\models\generated\collaboration-strategy-definition.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\Models\CollaborationStrategyDefinition.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\models\generated\component-collection-definition.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\Models\ComponentCollectionDefinition.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\models\generated\component-definition.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\Models\ComponentDefinition.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\models\generated\convergence-agentic-process-definition.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\Models\Processes\ConvergenceAgenticProcessDefinition.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\models\generated\convergence-strategy-definition.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\Models\ConvergenceStrategyDefinition.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\models\generated\decomposition-strategy-definition.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\Models\DecompositionStrategyDefinition.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\models\generated\duration.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\Models\Duration.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\models\generated\embedding-capability-definition.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\Models\EmbeddingCapabilityDefinition.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\models\generated\endpoint-definition.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\Models\EndpointDefinition.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\models\generated\external-resource-definition.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\Models\ExternalResourceDefinition.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\models\generated\file-memory-definition.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\Models\FileMemoryDefinition.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\models\generated\hosted-agent-definition.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\Models\HostedAgentDefinition.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\models\generated\http-interface-definition.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\Models\HttpInterfaceDefinition.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\models\generated\input-variable-definition.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\Models\InputVariableDefinition.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\models\generated\interface-collection-definition.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\Models\InterfaceCollectionDefinition.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\models\generated\interface-endpoint-collection-definition.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\Models\InterfaceEndpointCollectionDefinition.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\models\generated\kernel-definition.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\Models\KernelDefinition.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\models\generated\kernel-function-definition.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\Models\KernelFunctionDefinition.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\models\generated\kernel-function-strategy-definition.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\Models\KernelFunctionStrategyDefinition.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\models\generated\key-value-memory-definition.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\Models\KeyValueMemoryDefinition.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\models\generated\manifest-metadata.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\Models\ManifestMetadata.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\models\generated\manifest.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\Models\Manifest.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\models\generated\mcp-client-definition.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\Models\McpClientDefinition.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\models\generated\mcp-client-implementation-definition.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\Models\McpClientImplementationDefinition.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\models\generated\mcp-http-transport-definition.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\Models\McpHttpTransportDefinition.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\models\generated\mcp-stdio-transport-definition.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\Models\McpStdioTransportDefinition.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\models\generated\mcp-toolset-definition.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\Models\McpToolsetDefinition.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\models\generated\mcp-transport-definition.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\Models\McpTransportDefinition.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\models\generated\memory-definition.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\Models\MemoryDefinition.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\models\generated\memory-entry-definition.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\Models\MemoryEntryDefinition.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\models\generated\memory-entry-metadata.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\Models\MemoryEntryMetadata.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\models\generated\o-auth-flow-definition.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\Models\OAuthFlowDefinition.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\models\generated\o-auth2-authentication-client-definition.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\Models\Authentication\OAuth2AuthenticationClientDefinition.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\models\generated\o-auth2-authentication-endpoints-definition.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\Models\Authentication\OAuth2AuthenticationEndpointsDefinition.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\models\generated\o-auth2-authentication-request-definition.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\Models\Authentication\OAuth2AuthenticationRequestDefinition.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\models\generated\o-auth2-authentication-scheme-definition-base.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\Models\Authentication\OAuth2AuthenticationSchemeDefinitionBase.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\models\generated\o-auth2-authentication-scheme-definition.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\Models\Authentication\OAuth2AuthenticationSchemeDefinition.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\models\generated\o-auth2-token-definition.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\Models\Authentication\OAuth2TokenDefinition.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\models\generated\oauth-flow-collection-definition.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\Models\OauthFlowCollectionDefinition.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\models\generated\open-api-toolset-definition.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\Models\OpenApiToolsetDefinition.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\models\generated\open-id-connect-scheme-definition.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\Models\Authentication\OpenIDConnectSchemeDefinition.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\models\generated\output-variable-definition.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\Models\OutputVariableDefinition.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\models\generated\process-definition.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\Models\ProcessDefinition.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\models\generated\process-interface-definition.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\Models\ProcessInterfaceDefinition.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\models\generated\prompt-template-definition.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\Models\PromptTemplateDefinition.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\models\generated\reasoning-capability-definition.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\Models\ReasoningCapabilityDefinition.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\models\generated\referenceable-component-definition.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\Models\ReferenceableComponentDefinition.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\models\generated\remote-agent-definition.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\Models\RemoteAgentDefinition.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\models\generated\runtime-capability-api-definition.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\Models\RuntimeCapabilityApiDefinition.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\models\generated\runtime-capability-api-endpoint-definition.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\Models\RuntimeCapabilityApiEndpointDefinition.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\models\generated\security-scheme-definition.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\Models\SecuritySchemeDefinition.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\models\generated\selection-strategy-definition.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\Models\Processes\SelectionStrategyDefinition.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\models\generated\static-memory-definition.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\Models\StaticMemoryDefinition.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\models\generated\synthesis-strategy-definition.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\Models\SynthesisStrategyDefinition.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\models\generated\termination-strategy-definition.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\Models\Processes\TerminationStrategyDefinition.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\models\generated\toolset-definition.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\Models\ToolsetDefinition.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\models\generated\vector-memory-definition.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\Models\VectorMemoryDefinition.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\models\generated\workflow-definition-metadata.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\Models\WorkflowDefinitionMetadata.cs</CustomToolNamespace>
+    </None>
+    <None Update="src\models\generated\workflow-definition.ts">
+      <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\Models\WorkflowDefinition.cs</CustomToolNamespace>
     </None>
     <None Update="src\models\hosted-agent-definition.ts">
       <CustomToolNamespace>submodules\sdk-net\src\DClare.Sdk\Models\HostedAgentDefinition.cs</CustomToolNamespace>

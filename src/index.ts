@@ -15,6 +15,6 @@
 
 import 'reflect-metadata';
 
-export * from './enums';
+export * from './enums/generated';
 export * from './models';
 export * from './serialization';
