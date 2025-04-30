@@ -75,7 +75,7 @@ ${
 
     string ConstantValue(Constant constant)
     {
-        if (constant.Type == "string") return $"`{constant.Value}`";
+        if (constant.Type == "string") return $"`{constant.Value.Replace(@"\", @"\\")}`";
         return $"{constant.Value}";
     }
 

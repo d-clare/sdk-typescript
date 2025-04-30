@@ -1,5 +1,5 @@
-import { describe, it, expect } from 'vitest';
-import { 
+import { describe, expect, it } from 'vitest';
+import {
   A2AChannelConfiguration,
   AgentDefinition,
   AgentInterfaceDefinition,
@@ -17,7 +17,6 @@ import {
   Manifest,
   ManifestMetadata,
   McpToolsetDefinition,
-  McpTransportDefinition,
   OpenApiToolsetDefinition,
   ProcessDefinition,
   ProcessInterfaceDefinition,
@@ -25,39 +24,40 @@ import {
   Serialization,
   StaticMemoryDefinition,
   ToolsetDefinition,
-  VectorMemoryDefinition
+  VectorMemoryDefinition,
 } from '../../src';
 import { AgentDefinitionFactory } from './agent-definition-factory';
-import { AgentSkillDefinitionFactory } from './agent-skill-definition-factory';
-import { defaultEndpointUri, EndpointDefinitionFactory } from './endpoint-definition-factory';
 import { AgentInterfaceDefinitionFactory } from './agent-interface-definition-factory';
+import { AgentSkillDefinitionFactory } from './agent-skill-definition-factory';
 import { AuthenticationPolicyDefinitionFactory } from './authentication-policy-definition-factory';
 import { CollaborationAgenticProcessDefinitionFactory } from './collaboration-agentic-process-definition-factory';
 import { ComponentCollectionDefinitionFactory } from './component-collection-definition-factory';
 import { ConvergenceAgenticProcessDefinitionFactory } from './convergence-agentic-process-definition-factory';
-import { MemoryDefinitionFactory } from './memory-definition-factory';
+import { defaultEndpointUri, EndpointDefinitionFactory } from './endpoint-definition-factory';
+import { InterfaceCollectionDefinitionFactory } from './interface-collection-definition-factory';
 import { KernelDefinitionFactory } from './kernel-definition-factory';
 import { ManifestMetadataFactory } from './manifest-metadata-factory';
-import { InterfaceCollectionDefinitionFactory } from './interface-collection-definition-factory';
-import { ToolsetDefinitionFactory } from './toolset-definition-factory';
+import { MemoryDefinitionFactory } from './memory-definition-factory';
 import { ProcessDefinitionFactory } from './process-definition-factory';
 import { ProcessInterfaceDefinitionFactory } from './process-interface-definition-factory';
+import { ToolsetDefinitionFactory } from './toolset-definition-factory';
 
 export const serializationTest = (language: string) => {
-  const serializer: (obj: any) => string = Serialization[`to${language}`];
-  const deserializer: <T>(cls: new (...args: any[]) => T, jsonString: string) => T = Serialization[`from${language}`];
+  const serializer: (obj: unknown) => string = Serialization[`to${language}`];
+  const deserializer: <T>(cls: new (...args: unknown[]) => T, jsonString: string) => T =
+    Serialization[`from${language}`];
 
   describe(`${language} (de)serialization`, () => {
     it(`should (de)serialize ToolsetDefinition (OpenAPI) using ${language}`, () => {
       const sourceOjb = new ToolsetDefinition({
         openApi: {
           document: {
-            name: "fake-document",
+            name: 'fake-document',
             endpoint: {
-              uri: "https://fake-endpoint.com"
-            }
-          }
-        }
+              uri: 'https://fake-endpoint.com',
+            },
+          },
+        },
       });
 
       const serialized = serializer(sourceOjb);
@@ -71,23 +71,23 @@ export const serializationTest = (language: string) => {
       const sourceOjb = new ToolsetDefinition({
         mcp: {
           client: {
-            protocolVersion: "2024-11-05",
+            protocolVersion: '2024-11-05',
             implementation: {
               name: 'fake-mcp-client-implementation',
-              version: "fake-mcp-client-version"
-            }
+              version: 'fake-mcp-client-version',
+            },
           },
           transport: {
             http: {
               endpoint: {
-                uri: defaultEndpointUri
+                uri: defaultEndpointUri,
               },
               headers: {
-                "Fake-Header-Name": "Fake-Header-Value"
-              } 
-            }
-          }
-        }
+                'Fake-Header-Name': 'Fake-Header-Value',
+              },
+            },
+          },
+        },
       });
 
       const serialized = serializer(sourceOjb);
@@ -100,7 +100,7 @@ export const serializationTest = (language: string) => {
     it(`should (de)serialize A2AChannelConfiguration using ${language}`, () => {
       const endpointUri = 'http://test.com';
       const sourceOjb = new A2AChannelConfiguration({
-        endpoint: EndpointDefinitionFactory.create(endpointUri)
+        endpoint: EndpointDefinitionFactory.create(endpointUri),
       });
 
       const serialized = serializer(sourceOjb);
@@ -110,7 +110,7 @@ export const serializationTest = (language: string) => {
       expect(deserialized).toEqual(sourceOjb);
       expect(deserialized.endpoint.uri).toEqual(endpointUri);
     });
-    
+
     it(`should (de)serialize AgentDefinition (remote) using ${language}`, () => {
       const sourceOjb = AgentDefinitionFactory.createRemote();
 
@@ -120,7 +120,7 @@ export const serializationTest = (language: string) => {
       expect(deserialized).toBeDefined();
       expect(deserialized).toEqual(sourceOjb);
     });
-    
+
     it(`should (de)serialize AgentSkillDefinition using ${language}`, () => {
       const sourceOjb = AgentSkillDefinitionFactory.create();
 
@@ -130,7 +130,7 @@ export const serializationTest = (language: string) => {
       expect(deserialized).toBeDefined();
       expect(deserialized).toEqual(sourceOjb);
     });
-    
+
     it(`should (de)serialize AgentInterfaceDefinition using ${language}`, () => {
       const sourceOjb = AgentInterfaceDefinitionFactory.createHosted();
 
@@ -140,7 +140,7 @@ export const serializationTest = (language: string) => {
       expect(deserialized).toBeDefined();
       expect(deserialized).toEqual(sourceOjb);
     });
-    
+
     it(`should (de)serialize AuthenticationPolicyDefinition using ${language}`, () => {
       const sourceOjb = AuthenticationPolicyDefinitionFactory.createBearer();
 
@@ -150,7 +150,7 @@ export const serializationTest = (language: string) => {
       expect(deserialized).toBeDefined();
       expect(deserialized).toEqual(sourceOjb);
     });
-    
+
     it(`should (de)serialize CollaborationAgenticProcessDefinition using ${language}`, () => {
       const sourceOjb = CollaborationAgenticProcessDefinitionFactory.create();
 
@@ -160,7 +160,7 @@ export const serializationTest = (language: string) => {
       expect(deserialized).toBeDefined();
       expect(deserialized).toEqual(sourceOjb);
     });
-    
+
     it(`should (de)serialize ComponentCollectionDefinition using ${language}`, () => {
       const sourceOjb = ComponentCollectionDefinitionFactory.create();
 
@@ -170,7 +170,7 @@ export const serializationTest = (language: string) => {
       expect(deserialized).toBeDefined();
       expect(deserialized).toEqual(sourceOjb);
     });
-    
+
     it(`should (de)serialize ConvergenceAgenticProcessDefinition using ${language}`, () => {
       const sourceOjb = ConvergenceAgenticProcessDefinitionFactory.create();
 
@@ -180,9 +180,9 @@ export const serializationTest = (language: string) => {
       expect(deserialized).toBeDefined();
       expect(deserialized).toEqual(sourceOjb);
     });
-    
+
     it(`should (de)serialize Duration using ${language}`, () => {
-      const sourceOjb = {};// Duration.fromHours(42); // TODO
+      const sourceOjb = {}; // Duration.fromHours(42); // TODO
 
       const serialized = serializer(sourceOjb);
       const deserialized = deserializer(Duration, serialized);
@@ -190,7 +190,7 @@ export const serializationTest = (language: string) => {
       expect(deserialized).toBeDefined();
       expect(deserialized).toEqual(sourceOjb);
     });
-    
+
     it(`should (de)serialize EndpointDefinition using ${language}`, () => {
       const sourceOjb = EndpointDefinitionFactory.create();
 
@@ -200,7 +200,7 @@ export const serializationTest = (language: string) => {
       expect(deserialized).toBeDefined();
       expect(deserialized).toEqual(sourceOjb);
     });
-    
+
     it(`should (de)serialize FileMemoryDefinition using ${language}`, () => {
       const sourceOjb = MemoryDefinitionFactory.createFile();
 
@@ -210,7 +210,7 @@ export const serializationTest = (language: string) => {
       expect(deserialized).toBeDefined();
       expect(deserialized).toEqual(sourceOjb);
     });
-    
+
     it(`should (de)serialize HostedAgentDefinition using ${language}`, () => {
       const sourceOjb = AgentDefinitionFactory.createHosted();
 
@@ -220,7 +220,7 @@ export const serializationTest = (language: string) => {
       expect(deserialized).toBeDefined();
       expect(deserialized).toEqual(sourceOjb.hosted);
     });
-    
+
     it(`should (de)serialize KernelDefinition using ${language}`, () => {
       const sourceOjb = KernelDefinitionFactory.create();
 
@@ -230,7 +230,7 @@ export const serializationTest = (language: string) => {
       expect(deserialized).toBeDefined();
       expect(deserialized).toEqual(sourceOjb);
     });
-    
+
     it(`should (de)serialize KeyValueMemoryDefinition using ${language}`, () => {
       const sourceOjb = MemoryDefinitionFactory.createKeyValue();
 
@@ -240,12 +240,12 @@ export const serializationTest = (language: string) => {
       expect(deserialized).toBeDefined();
       expect(deserialized).toEqual(sourceOjb.keyValue);
     });
-    
+
     it(`should (de)serialize KeyValueMemoryDefinition using ${language}`, () => {
       const sourceOjb = new Manifest({
         metadata: ManifestMetadataFactory.create(),
         components: ComponentCollectionDefinitionFactory.create(),
-        interfaces: InterfaceCollectionDefinitionFactory.create()
+        interfaces: InterfaceCollectionDefinitionFactory.create(),
       });
 
       const serialized = serializer(sourceOjb);
@@ -254,7 +254,7 @@ export const serializationTest = (language: string) => {
       expect(deserialized).toBeDefined();
       expect(deserialized).toEqual(sourceOjb);
     });
-    
+
     it(`should (de)serialize ManifestMetadata using ${language}`, () => {
       const sourceOjb = ManifestMetadataFactory.create();
 
@@ -264,7 +264,7 @@ export const serializationTest = (language: string) => {
       expect(deserialized).toBeDefined();
       expect(deserialized).toEqual(sourceOjb);
     });
-    
+
     it(`should (de)serialize McpToolsetDefinition using ${language}`, () => {
       const sourceOjb = ToolsetDefinitionFactory.createMcp();
 
@@ -274,7 +274,7 @@ export const serializationTest = (language: string) => {
       expect(deserialized).toBeDefined();
       expect(deserialized).toEqual(sourceOjb.mcp);
     });
-    
+
     it(`should (de)serialize OpenApiToolsetDefinition using ${language}`, () => {
       const sourceOjb = ToolsetDefinitionFactory.createOpenApi();
 
@@ -284,7 +284,7 @@ export const serializationTest = (language: string) => {
       expect(deserialized).toBeDefined();
       expect(deserialized).toEqual(sourceOjb.openApi);
     });
-    
+
     it(`should (de)serialize ProcessDefinition using ${language}`, () => {
       const sourceOjb = ProcessDefinitionFactory.createConvergence();
 
@@ -294,7 +294,7 @@ export const serializationTest = (language: string) => {
       expect(deserialized).toBeDefined();
       expect(deserialized).toEqual(sourceOjb);
     });
-    
+
     it(`should (de)serialize ProcessInterfaceDefinition using ${language}`, () => {
       const sourceOjb = ProcessInterfaceDefinitionFactory.createCollaboration();
 
@@ -304,7 +304,7 @@ export const serializationTest = (language: string) => {
       expect(deserialized).toBeDefined();
       expect(deserialized).toEqual(sourceOjb);
     });
-    
+
     it(`should (de)serialize RemoteAgentDefinition using ${language}`, () => {
       const sourceOjb = AgentDefinitionFactory.createRemote();
 
@@ -314,7 +314,7 @@ export const serializationTest = (language: string) => {
       expect(deserialized).toBeDefined();
       expect(deserialized).toEqual(sourceOjb.remote);
     });
-    
+
     it(`should (de)serialize StaticMemoryDefinition using ${language}`, () => {
       const sourceOjb = MemoryDefinitionFactory.createStatic();
 
@@ -324,7 +324,7 @@ export const serializationTest = (language: string) => {
       expect(deserialized).toBeDefined();
       expect(deserialized).toEqual(sourceOjb);
     });
-    
+
     it(`should (de)serialize VectorMemoryDefinition using ${language}`, () => {
       const sourceOjb = MemoryDefinitionFactory.createVector();
 

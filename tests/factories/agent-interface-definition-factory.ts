@@ -1,9 +1,16 @@
-import { A2AChannelConfiguration, AgentCommunicationChannelDefinition, AgentInterfaceDefinition, AgentMemoryCapabilityDefinition, AgentMemoryFormatOptions, AgentMemoryInjectionStrategyDefinition, AgentMemorySearchDefinition, AuthenticationParameterPlacementLocation, DClareDefaults, HostedAgentDefinition, HttpInterfaceDefinition, InterfaceEndpointCollectionDefinition, MemoryInjectionPosition, RemoteAgentDefinition, SecurityScheme, SecuritySchemeDefinition } from "../../src";
-import { AgentSkillDefinitionFactory } from "./agent-skill-definition-factory";
-import { EndpointDefinitionFactory } from "./endpoint-definition-factory";
-import { HostedAgentDefinitionFactory } from "./hosted-agent-definition-factory";
-import { KernelDefinitionFactory } from "./kernel-definition-factory";
-import { MemoryDefinitionFactory } from "./memory-definition-factory";
+import {
+  A2AChannelConfiguration,
+  AgentCommunicationChannelDefinition,
+  AgentInterfaceDefinition,
+  AuthenticationParameterPlacementLocation,
+  HttpInterfaceDefinition,
+  InterfaceEndpointCollectionDefinition,
+  RemoteAgentDefinition,
+  SecurityScheme,
+  SecuritySchemeDefinition,
+} from '../../src';
+import { EndpointDefinitionFactory } from './endpoint-definition-factory';
+import { HostedAgentDefinitionFactory } from './hosted-agent-definition-factory';
 
 export class AgentInterfaceDefinitionFactory {
   static createHosted(): AgentInterfaceDefinition {
@@ -16,11 +23,11 @@ export class AgentInterfaceDefinitionFactory {
             type: SecurityScheme.ApiKey,
             description: 'Fake ApiKey authentication scheme',
             name: 'ApiKey',
-            in: AuthenticationParameterPlacementLocation.Header
-          })
-        })
+            in: AuthenticationParameterPlacementLocation.Header,
+          }),
+        }),
       }),
-      hosted: HostedAgentDefinitionFactory.create()
+      hosted: HostedAgentDefinitionFactory.create(),
     });
   }
 
@@ -34,17 +41,17 @@ export class AgentInterfaceDefinitionFactory {
             type: SecurityScheme.ApiKey,
             description: 'Fake ApiKey authentication scheme',
             name: 'ApiKey',
-            in: AuthenticationParameterPlacementLocation.Header
-          })
-        })
+            in: AuthenticationParameterPlacementLocation.Header,
+          }),
+        }),
       }),
       remote: new RemoteAgentDefinition({
         channel: new AgentCommunicationChannelDefinition({
           a2A: new A2AChannelConfiguration({
-            endpoint: EndpointDefinitionFactory.create()
-          })
-        })
-      })
+            endpoint: EndpointDefinitionFactory.create(),
+          }),
+        }),
+      }),
     });
   }
 
@@ -52,6 +59,6 @@ export class AgentInterfaceDefinitionFactory {
     return {
       hosted: this.createHosted(),
       remote: this.createRemote(),
-    }
+    };
   }
 }

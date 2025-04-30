@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -13,9 +13,7 @@
  * limitations under the License.
  */
 
-
- //!\ This file has been generated, any modification will be lost /!\\
-
+//!\ This file has been generated, any modification will be lost /!\\
 
 import { Hydrator } from '../hydrator';
 import { AuthenticationPolicyDefinition } from './authentication-policy-definition';
@@ -31,18 +29,73 @@ import { RecordTransform } from '../transformers/record-transform';
  * Represents the definition of a collection of reusable components
  */
 export class ComponentCollectionDefinition extends Hydrator<ComponentCollectionDefinition> {
-
   constructor(model?: Partial<ComponentCollectionDefinition>) {
     super(model);
     if (model) {
       this.secrets = model.secrets ? model.secrets : [];
-      this.authentications = model.authentications ? Object.entries(model.authentications).reduce((acc, [key, m]) => { acc[key] = new AuthenticationPolicyDefinition(m); return acc; }, {} as Record<string, AuthenticationPolicyDefinition>) : {};
-      this.toolsets = model.toolsets ? Object.entries(model.toolsets).reduce((acc, [key, m]) => { acc[key] = new ToolsetDefinition(m); return acc; }, {} as Record<string, ToolsetDefinition>) : {};
-      this.functions = model.functions ? Object.entries(model.functions).reduce((acc, [key, m]) => { acc[key] = new KernelFunctionDefinition(m); return acc; }, {} as Record<string, KernelFunctionDefinition>) : {};
-      this.kernels = model.kernels ? Object.entries(model.kernels).reduce((acc, [key, m]) => { acc[key] = new KernelDefinition(m); return acc; }, {} as Record<string, KernelDefinition>) : {};
-      this.memories = model.memories ? Object.entries(model.memories).reduce((acc, [key, m]) => { acc[key] = new MemoryDefinition(m); return acc; }, {} as Record<string, MemoryDefinition>) : {};
-      this.agents = model.agents ? Object.entries(model.agents).reduce((acc, [key, m]) => { acc[key] = new AgentDefinition(m); return acc; }, {} as Record<string, AgentDefinition>) : {};
-      this.processes = model.processes ? Object.entries(model.processes).reduce((acc, [key, m]) => { acc[key] = new ProcessDefinition(m); return acc; }, {} as Record<string, ProcessDefinition>) : {};
+      this.authentications = model.authentications
+        ? Object.entries(model.authentications).reduce(
+            (acc, [key, m]) => {
+              acc[key] = new AuthenticationPolicyDefinition(m);
+              return acc;
+            },
+            {} as Record<string, AuthenticationPolicyDefinition>
+          )
+        : {};
+      this.toolsets = model.toolsets
+        ? Object.entries(model.toolsets).reduce(
+            (acc, [key, m]) => {
+              acc[key] = new ToolsetDefinition(m);
+              return acc;
+            },
+            {} as Record<string, ToolsetDefinition>
+          )
+        : {};
+      this.functions = model.functions
+        ? Object.entries(model.functions).reduce(
+            (acc, [key, m]) => {
+              acc[key] = new KernelFunctionDefinition(m);
+              return acc;
+            },
+            {} as Record<string, KernelFunctionDefinition>
+          )
+        : {};
+      this.kernels = model.kernels
+        ? Object.entries(model.kernels).reduce(
+            (acc, [key, m]) => {
+              acc[key] = new KernelDefinition(m);
+              return acc;
+            },
+            {} as Record<string, KernelDefinition>
+          )
+        : {};
+      this.memories = model.memories
+        ? Object.entries(model.memories).reduce(
+            (acc, [key, m]) => {
+              acc[key] = new MemoryDefinition(m);
+              return acc;
+            },
+            {} as Record<string, MemoryDefinition>
+          )
+        : {};
+      this.agents = model.agents
+        ? Object.entries(model.agents).reduce(
+            (acc, [key, m]) => {
+              acc[key] = new AgentDefinition(m);
+              return acc;
+            },
+            {} as Record<string, AgentDefinition>
+          )
+        : {};
+      this.processes = model.processes
+        ? Object.entries(model.processes).reduce(
+            (acc, [key, m]) => {
+              acc[key] = new ProcessDefinition(m);
+              return acc;
+            },
+            {} as Record<string, ProcessDefinition>
+          )
+        : {};
     }
   }
 

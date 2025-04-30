@@ -1,8 +1,22 @@
-import { AgentMemoryCapabilityDefinition, AgentMemoryEntryMetadataDefinition, AgentMemoryFormatOptions, AgentMemoryInjectionStrategyDefinition, AgentMemoryMetadataResolutionStrategyDefinition, AgentMemorySearchDefinition, AgentMemoryStoragePolicyDefinition, AgentMemorySynthetizationStrategyDefinition, DClareDefaults, HostedAgentDefinition, KernelFunctionStrategyDefinition, MemoryEntryMetadata, MemoryInjectionPosition } from "../../src";
-import { AgentSkillDefinitionFactory } from "./agent-skill-definition-factory";
-import { KernelDefinitionFactory } from "./kernel-definition-factory";
-import { KernelFunctionDefinitionFactory } from "./kernel-function-definition-factory";
-import { MemoryDefinitionFactory } from "./memory-definition-factory";
+import {
+  AgentMemoryCapabilityDefinition,
+  AgentMemoryEntryMetadataDefinition,
+  AgentMemoryFormatOptions,
+  AgentMemoryInjectionStrategyDefinition,
+  AgentMemoryMetadataResolutionStrategyDefinition,
+  AgentMemorySearchDefinition,
+  AgentMemoryStoragePolicyDefinition,
+  AgentMemorySynthetizationStrategyDefinition,
+  DClareDefaults,
+  HostedAgentDefinition,
+  KernelFunctionStrategyDefinition,
+  MemoryEntryMetadata,
+  MemoryInjectionPosition,
+} from '../../src';
+import { AgentSkillDefinitionFactory } from './agent-skill-definition-factory';
+import { KernelDefinitionFactory } from './kernel-definition-factory';
+import { KernelFunctionDefinitionFactory } from './kernel-function-definition-factory';
+import { MemoryDefinitionFactory } from './memory-definition-factory';
 
 export class HostedAgentDefinitionFactory {
   static create(): HostedAgentDefinition {
@@ -15,10 +29,12 @@ export class HostedAgentDefinitionFactory {
       memory: new AgentMemoryCapabilityDefinition({
         source: MemoryDefinitionFactory.createFile(),
         store: new AgentMemoryStoragePolicyDefinition({
-          synthetization: new AgentMemorySynthetizationStrategyDefinition(new KernelFunctionStrategyDefinition({
-            function: KernelFunctionDefinitionFactory.create(),
-            kernel: KernelDefinitionFactory.create()
-          })),
+          synthetization: new AgentMemorySynthetizationStrategyDefinition(
+            new KernelFunctionStrategyDefinition({
+              function: KernelFunctionDefinitionFactory.create(),
+              kernel: KernelDefinitionFactory.create(),
+            })
+          ),
           metadata: new AgentMemoryEntryMetadataDefinition({
             resolution: new AgentMemoryMetadataResolutionStrategyDefinition({}),
             values: new MemoryEntryMetadata({
@@ -29,22 +45,22 @@ export class HostedAgentDefinitionFactory {
               properties: {
                 'fake-prop-key-1': 'fake-prop-value-1',
                 'fake-prop-key-2': 'fake-prop-value-2',
-              }
-            })
-          })
+              },
+            }),
+          }),
         }),
         inject: new AgentMemoryInjectionStrategyDefinition({
           format: new AgentMemoryFormatOptions({
             position: MemoryInjectionPosition.After,
             separator: DClareDefaults.MemoryEntrySeparator,
-            template: 'fake-template'
+            template: 'fake-template',
           }),
           match: new AgentMemorySearchDefinition({
             keys: ['*.fake-key'],
-            max: 10
-          })
-        })
-      })
+            max: 10,
+          }),
+        }),
+      }),
     });
   }
 }

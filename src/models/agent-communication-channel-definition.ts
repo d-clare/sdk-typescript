@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -13,9 +13,7 @@
  * limitations under the License.
  */
 
-
- //!\ This file has been generated, any modification will be lost /!\\
-
+//!\ This file has been generated, any modification will be lost /!\\
 
 import { Hydrator } from '../hydrator';
 import { A2AChannelConfiguration } from './a2a-channel-configuration';
@@ -26,18 +24,17 @@ import { AgentCommunicationChannelType } from '../enums/agent-communication-chan
  * Represents the definition of protocol-specific configuration options for communicating with a remote agent
  */
 export class AgentCommunicationChannelDefinition extends Hydrator<AgentCommunicationChannelDefinition> {
-
   constructor(model?: Partial<AgentCommunicationChannelDefinition>) {
     super(model);
     if (model) {
       if (model.a2A) this.a2A = new A2AChannelConfiguration(model.a2A);
     }
     Object.defineProperty(this, 'type', {
-      get () {
+      get() {
         return this?.a2A != null ? AgentCommunicationChannelType.A2A : '';
       },
       enumerable: true,
-      configurable: true
+      configurable: true,
     });
   }
 

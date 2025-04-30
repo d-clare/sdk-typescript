@@ -1,5 +1,5 @@
-import { McpHttpTransportDefinition, McpStdioTransportDefinition, McpTransportDefinition } from "../../src";
-import { EndpointDefinitionFactory } from "./endpoint-definition-factory";
+import { McpHttpTransportDefinition, McpStdioTransportDefinition, McpTransportDefinition } from '../../src';
+import { EndpointDefinitionFactory } from './endpoint-definition-factory';
 
 export class McpTransportDefinitionFactory {
   static createHttp(): McpTransportDefinition {
@@ -7,9 +7,9 @@ export class McpTransportDefinitionFactory {
       http: new McpHttpTransportDefinition({
         endpoint: EndpointDefinitionFactory.create(),
         headers: {
-          "Fake-Header-Name": "Fake-Header-Value"
-        } 
-      })
+          'Fake-Header-Name': 'Fake-Header-Value',
+        },
+      }),
     });
   }
 
@@ -17,11 +17,8 @@ export class McpTransportDefinitionFactory {
     return new McpTransportDefinition({
       stdio: new McpStdioTransportDefinition({
         command: 'fake-command',
-        arguments: [
-          'fake-arg-1',
-          'fake-arg-2'
-        ]
-      })
+        arguments: ['fake-arg-1', 'fake-arg-2'],
+      }),
     });
   }
 }

@@ -1,17 +1,17 @@
-import { JSONSchema } from "json-schema-typed";
+import { JSONSchema } from 'json-schema-typed';
 
 export class JsonSchemaFactory {
   static create(): JSONSchema {
     return {
-      type: "object",
+      type: 'object',
       properties: {
         'fake-property-1': {
-          type: 'string'
+          type: 'string',
         },
         'fake-property-2': {
-          type: 'number'
-        }
-      }
-    }
-  };
+          type: 'number',
+        },
+      },
+    };
+  }
 }

@@ -7,7 +7,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -19,11 +19,11 @@
  * Returns true if the value is an object but not an array
  * @param value
  * @returns
-*/
+ */
 const isObject = <T extends object>(value: T): boolean => {
-    if (!value) return false;
-    const type = typeof value;
-    return type === 'object' && !Array.isArray(value);
+  if (!value) return false;
+  const type = typeof value;
+  return type === 'object' && !Array.isArray(value);
 };
 
 /**
@@ -34,20 +34,20 @@ const isObject = <T extends object>(value: T): boolean => {
  * @returns A deep copy of the given object
  */
 const deepCopy = <T extends object>(
-    object: T,
-    replacer?: (this: T, key: string, value: T) => T,
-    reviver?: (this: T, key: string, value: T) => T,
+  object: T,
+  replacer?: (this: T, key: string, value: T) => T,
+  reviver?: (this: T, key: string, value: T) => T
 ): T => {
-    return JSON.parse(JSON.stringify(object, replacer), reviver);
+  return JSON.parse(JSON.stringify(object, replacer), reviver);
 };
 
 /**
  * Enables inheriting models hydration
  */
 export class Hydrator<T extends object> {
-    constructor(model?: Partial<T>) {
-        if (model && isObject(model)) {
-            Object.assign(this, deepCopy(model));
-        }
+  constructor(model?: Partial<T>) {
+    if (model && isObject(model)) {
+      Object.assign(this, deepCopy(model));
     }
+  }
 }

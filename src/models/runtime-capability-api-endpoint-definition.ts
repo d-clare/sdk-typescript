@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -13,9 +13,7 @@
  * limitations under the License.
  */
 
-
- //!\ This file has been generated, any modification will be lost /!\\
-
+//!\ This file has been generated, any modification will be lost /!\\
 
 import { Hydrator } from '../hydrator';
 import { AuthenticationPolicyDefinition } from './authentication-policy-definition';
@@ -25,7 +23,6 @@ import { Type } from 'class-transformer';
  * Represents the definition of an runtime capability API endpoint
  */
 export class RuntimeCapabilityApiEndpointDefinition extends Hydrator<RuntimeCapabilityApiEndpointDefinition> {
-
   constructor(model?: Partial<RuntimeCapabilityApiEndpointDefinition>) {
     super(model);
     if (model) {

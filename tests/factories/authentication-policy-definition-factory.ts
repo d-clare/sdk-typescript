@@ -1,4 +1,15 @@
-import { ApiKeyAuthenticationSchemeDefinition, AuthenticationParameterPlacementDefinition, AuthenticationParameterPlacementLocation, AuthenticationPolicyDefinition, BearerAuthenticationSchemeDefinition, OAuth2AuthenticationClientDefinition, OAuth2AuthenticationEndpointsDefinition, OAuth2AuthenticationSchemeDefinition, OAuth2GrantType, OpenIDConnectSchemeDefinition } from "../../src";
+import {
+  ApiKeyAuthenticationSchemeDefinition,
+  AuthenticationParameterPlacementDefinition,
+  AuthenticationParameterPlacementLocation,
+  AuthenticationPolicyDefinition,
+  BearerAuthenticationSchemeDefinition,
+  OAuth2AuthenticationClientDefinition,
+  OAuth2AuthenticationEndpointsDefinition,
+  OAuth2AuthenticationSchemeDefinition,
+  OAuth2GrantType,
+  OpenIDConnectSchemeDefinition,
+} from '../../src';
 
 export class AuthenticationPolicyDefinitionFactory {
   static createApiKey(): AuthenticationPolicyDefinition {
@@ -7,17 +18,17 @@ export class AuthenticationPolicyDefinitionFactory {
         key: 'fake-api-key',
         placement: new AuthenticationParameterPlacementDefinition({
           in: AuthenticationParameterPlacementLocation.Header,
-          name: 'Api-Key'
-        })
-      })
+          name: 'Api-Key',
+        }),
+      }),
     });
   }
 
   static createBearer(): AuthenticationPolicyDefinition {
     return new AuthenticationPolicyDefinition({
       bearer: new BearerAuthenticationSchemeDefinition({
-        token: 'fake-bearer-token'
-      })
+        token: 'fake-bearer-token',
+      }),
     });
   }
 
@@ -28,12 +39,12 @@ export class AuthenticationPolicyDefinitionFactory {
         grant: OAuth2GrantType.ClientCredentials,
         client: new OAuth2AuthenticationClientDefinition({
           id: 'fake-client-id',
-          secret: 'fake-client-secret'
+          secret: 'fake-client-secret',
         }),
         endpoints: new OAuth2AuthenticationEndpointsDefinition({
-          token: '/token'
-        })
-      })
+          token: '/token',
+        }),
+      }),
     });
   }
 
@@ -44,9 +55,9 @@ export class AuthenticationPolicyDefinitionFactory {
         grant: OAuth2GrantType.ClientCredentials,
         client: new OAuth2AuthenticationClientDefinition({
           id: 'fake-client-id',
-          secret: 'fake-client-secret'
-        })
-      })
+          secret: 'fake-client-secret',
+        }),
+      }),
     });
   }
 

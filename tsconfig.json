@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "outDir": "./types",
     "target": "ES2020",
     //"useDefineForClassFields": true, // breaks the hydrator
     "module": "ESNext",
@@ -7,13 +8,17 @@
     "skipLibCheck": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
+    "declaration": true,
+    //"declarationMap": true,
 
     /* Bundler mode */
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
     "isolatedModules": true,
     "moduleDetection": "force",
-    "noEmit": true,
+    //"noEmit": true,
+    "emitDeclarationOnly": true,
+    "esModuleInterop": true,
 
     /* Linting */
     "strict": true,

@@ -1,4 +1,4 @@
-import { MemoryEntryDefinition, MemoryEntryMetadata } from "../../src";
+import { MemoryEntryDefinition, MemoryEntryMetadata } from '../../src';
 
 export class MemoryEntryDefinitionFactory {
   static create(): MemoryEntryDefinition {
@@ -11,12 +11,14 @@ export class MemoryEntryDefinitionFactory {
         properties: {
           'fake-property-1-key': 'fake-property-1-value',
           'fake-property-2-key': 'fake-property-2-value',
-        }
-      })
+        },
+      }),
     });
   }
 
   static createCollection(length: number = 3): MemoryEntryDefinition[] {
-    return Array(length).fill('').map(() => this.create());
+    return Array(length)
+      .fill('')
+      .map(() => this.create());
   }
 }

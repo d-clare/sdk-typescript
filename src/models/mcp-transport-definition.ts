@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -13,9 +13,7 @@
  * limitations under the License.
  */
 
-
- //!\ This file has been generated, any modification will be lost /!\\
-
+//!\ This file has been generated, any modification will be lost /!\\
 
 import { Hydrator } from '../hydrator';
 import { McpHttpTransportDefinition } from './mcp-http-transport-definition';
@@ -27,7 +25,6 @@ import { McpTransportType } from '../enums/mcp-transport-type';
  * Represents the definition of the transport to use to connect to an MCP server
  */
 export class McpTransportDefinition extends Hydrator<McpTransportDefinition> {
-
   constructor(model?: Partial<McpTransportDefinition>) {
     super(model);
     if (model) {
@@ -36,12 +33,11 @@ export class McpTransportDefinition extends Hydrator<McpTransportDefinition> {
       this.options = model.options ? model.options : {};
     }
     Object.defineProperty(this, 'type', {
-      get () {
-        return this?.http != null ? McpTransportType.Http :
-          this?.stdio != null ? McpTransportType.Stdio : '';
+      get() {
+        return this?.http != null ? McpTransportType.Http : this?.stdio != null ? McpTransportType.Stdio : '';
       },
       enumerable: true,
-      configurable: true
+      configurable: true,
     });
   }
 

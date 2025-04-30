@@ -1,18 +1,38 @@
 {
   "name": "@d-clare/sdk",
-  "private": true,
   "version": "0.0.0",
   "type": "module",
+  "license": "http://www.apache.org/licenses/LICENSE-2.0.txt",
+  "main": "dist/sdk.cjs.js",
+  "module": "dist/sdk.es.js",
+  "types": "dist/types/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
-    "prepare": "git submodule update --remote --init",
+    "format": "npx prettier --write \"**/*.ts\"",
+    "prebuild": "npm run format",
     "build": "tsc && vite build",
+    "postbuild": "shx mv ./types ./dist",
     "test": "vitest run",
-    "coverage": "vitest run --coverage"
+    "coverage": "vitest run --coverage",
+    "lint": "npx eslint . --ext .ts && npx prettier --check \"**/*.ts\""
   },
   "devDependencies": {
+    "@eslint/js": "^9.25.1",
     "@vitest/coverage-v8": "^3.1.2",
+    "eslint": "^9.25.1",
+    "eslint-config-prettier": "^10.1.2",
+    "eslint-plugin-prettier": "^5.2.6",
+    "globals": "^16.0.0",
     "json-schema-typed": "^8.0.1",
+    "prettier": "^3.5.3",
+    "shx": "^0.4.0",
     "typescript": "~5.7.2",
+    "typescript-eslint": "^8.31.1",
     "vite": "^6.3.1",
     "vitest": "^3.1.2"
   },
@@ -20,5 +40,16 @@
     "class-transformer": "^0.5.1",
     "reflect-metadata": "^0.2.2",
     "yaml": "^2.7.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/d-clare/sdk-typescript.git"
+  },
+  "author": {
+    "name": "DClare Contributors",
+    "url": "https://github.com/d-clare"
+  },
+  "bugs": {
+    "url": "https://github.com/d-clare/sdk-typescript/issues"
   }
 }

@@ -1,5 +1,5 @@
-import { describe, expect, it } from "vitest";
-import { Hydrator } from "../src/hydrator";
+import { describe, expect, it } from 'vitest';
+import { Hydrator } from '../src/hydrator';
 
 class User extends Hydrator<User> {
   constructor(model?: Partial<User>) {
@@ -8,7 +8,6 @@ class User extends Hydrator<User> {
   id: number;
   name: string;
 }
-
 
 class Order extends Hydrator<Order> {
   constructor(model?: Partial<Order>) {
@@ -21,12 +20,12 @@ class Order extends Hydrator<Order> {
 
 const userData = {
   id: 1,
-  name: 'John Doe'
+  name: 'John Doe',
 };
 
 const orderData = {
   id: 2,
-  user: userData
+  user: userData,
 };
 
 describe('Hydrator', () => {

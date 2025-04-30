@@ -1,4 +1,12 @@
-import { FileMemoryDefinition, KeyValueMemoryDefinition, KeyValueMemoryProvider, MemoryDefinition, StaticMemoryDefinition, VectorMemoryDefinition, VectorMemoryProvider } from '../../src';
+import {
+  FileMemoryDefinition,
+  KeyValueMemoryDefinition,
+  KeyValueMemoryProvider,
+  MemoryDefinition,
+  StaticMemoryDefinition,
+  VectorMemoryDefinition,
+  VectorMemoryProvider,
+} from '../../src';
 import { MemoryEntryDefinitionFactory } from './memory-entry-definition-factory';
 
 export class MemoryDefinitionFactory {
@@ -6,28 +14,28 @@ export class MemoryDefinitionFactory {
     return new MemoryDefinition({
       file: new FileMemoryDefinition({
         path: '/fake/path',
-        pattern: '*.*'
-      })
+        pattern: '*.*',
+      }),
     });
   }
-  
+
   static createKeyValue(): MemoryDefinition {
     return new MemoryDefinition({
       keyValue: new KeyValueMemoryDefinition({
         provider: KeyValueMemoryProvider.Cache,
         configuration: {
-           'fake-configuration-key-1': 'fake-configuration-value-1',
-           'fake-configuration-key-2': 'fake-configuration-value-2',
-        }
-      })
+          'fake-configuration-key-1': 'fake-configuration-value-1',
+          'fake-configuration-key-2': 'fake-configuration-value-2',
+        },
+      }),
     });
   }
 
   static createStatic(): MemoryDefinition {
     return new MemoryDefinition({
       static: new StaticMemoryDefinition({
-        entries: MemoryEntryDefinitionFactory.createCollection()
-      })
+        entries: MemoryEntryDefinitionFactory.createCollection(),
+      }),
     });
   }
 
@@ -39,8 +47,8 @@ export class MemoryDefinitionFactory {
           'fake-configuration-key-1': 'fake-configuration-value-1',
           'fake-configuration-key-2': 'fake-configuration-value-2',
           'fake-configuration-key-3': 'fake-configuration-value-3',
-       }
-      })
+        },
+      }),
     });
   }
 
@@ -49,7 +57,7 @@ export class MemoryDefinitionFactory {
       file: this.createFile(),
       keyValue: this.createKeyValue(),
       static: this.createStatic(),
-      vector: this.createVector()
+      vector: this.createVector(),
     };
   }
 }

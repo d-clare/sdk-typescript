@@ -1,15 +1,14 @@
 import {
-  EndpointDefinition,
   ExternalResourceDefinition,
   McpClientDefinition,
   McpClientImplementationDefinition,
   McpProtocolVersion,
   McpToolsetDefinition,
   OpenApiToolsetDefinition,
-  ToolsetDefinition
-} from "../../src";
-import { EndpointDefinitionFactory } from "./endpoint-definition-factory";
-import { McpTransportDefinitionFactory } from "./mcp-transport-definition-factory";
+  ToolsetDefinition,
+} from '../../src';
+import { EndpointDefinitionFactory } from './endpoint-definition-factory';
+import { McpTransportDefinitionFactory } from './mcp-transport-definition-factory';
 
 export class ToolsetDefinitionFactory {
   static createMcp(): ToolsetDefinition {
@@ -19,11 +18,11 @@ export class ToolsetDefinitionFactory {
           protocolVersion: McpProtocolVersion.v20241105,
           implementation: new McpClientImplementationDefinition({
             name: 'fake-mcp-client-implementation',
-            version: "fake-mcp-client-version"
-          })
+            version: 'fake-mcp-client-version',
+          }),
         }),
-        transport: McpTransportDefinitionFactory.createHttp()
-      })
+        transport: McpTransportDefinitionFactory.createHttp(),
+      }),
     });
   }
 
@@ -32,16 +31,16 @@ export class ToolsetDefinitionFactory {
       openApi: new OpenApiToolsetDefinition({
         document: new ExternalResourceDefinition({
           name: 'fake-document',
-          endpoint: EndpointDefinitionFactory.create()
-        })
-      })
+          endpoint: EndpointDefinitionFactory.create(),
+        }),
+      }),
     });
   }
 
   static createCollection(): Record<string, ToolsetDefinition> {
     return {
       mcp: this.createMcp(),
-      openApi: this.createOpenApi()
+      openApi: this.createOpenApi(),
     };
   }
 }

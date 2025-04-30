@@ -1,7 +1,12 @@
-import { ConvergenceAgenticProcessDefinition, ConvergenceStrategyDefinition, DecompositionStrategyDefinition, SynthesisStrategyDefinition } from "../../src";
-import { AgentDefinitionFactory } from "./agent-definition-factory";
-import { KernelDefinitionFactory } from "./kernel-definition-factory";
-import { KernelFunctionDefinitionFactory } from "./kernel-function-definition-factory";
+import {
+  ConvergenceAgenticProcessDefinition,
+  ConvergenceStrategyDefinition,
+  DecompositionStrategyDefinition,
+  SynthesisStrategyDefinition,
+} from '../../src';
+import { AgentDefinitionFactory } from './agent-definition-factory';
+import { KernelDefinitionFactory } from './kernel-definition-factory';
+import { KernelFunctionDefinitionFactory } from './kernel-function-definition-factory';
 
 export class ConvergenceAgenticProcessDefinitionFactory {
   static create(): ConvergenceAgenticProcessDefinition {
@@ -21,8 +26,8 @@ export class ConvergenceAgenticProcessDefinitionFactory {
           inputsVariableName: 'responses',
           function: KernelFunctionDefinitionFactory.create(),
           kernel: KernelDefinitionFactory.create(),
-        })
-      })
+        }),
+      }),
     });
   }
 }

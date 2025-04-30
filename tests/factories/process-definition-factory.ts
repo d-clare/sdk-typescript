@@ -1,17 +1,17 @@
-import { ProcessDefinition } from "../../src";
-import { CollaborationAgenticProcessDefinitionFactory } from "./collaboration-agentic-process-definition-factory";
-import { ConvergenceAgenticProcessDefinitionFactory } from "./convergence-agentic-process-definition-factory";
+import { ProcessDefinition } from '../../src';
+import { CollaborationAgenticProcessDefinitionFactory } from './collaboration-agentic-process-definition-factory';
+import { ConvergenceAgenticProcessDefinitionFactory } from './convergence-agentic-process-definition-factory';
 
 export class ProcessDefinitionFactory {
   static createCollaboration(): ProcessDefinition {
     return new ProcessDefinition({
-      collaboration: CollaborationAgenticProcessDefinitionFactory.create()
+      collaboration: CollaborationAgenticProcessDefinitionFactory.create(),
     });
   }
-  
+
   static createConvergence(): ProcessDefinition {
     return new ProcessDefinition({
-      convergence: ConvergenceAgenticProcessDefinitionFactory.create()
+      convergence: ConvergenceAgenticProcessDefinitionFactory.create(),
     });
   }
 

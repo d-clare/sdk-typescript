@@ -1,7 +1,12 @@
-import { CollaborationAgenticProcessDefinition, CollaborationStrategyDefinition, SelectionStrategyDefinition, TerminationStrategyDefinition } from "../../src";
-import { AgentDefinitionFactory } from "./agent-definition-factory";
-import { KernelDefinitionFactory } from "./kernel-definition-factory";
-import { KernelFunctionDefinitionFactory } from "./kernel-function-definition-factory";
+import {
+  CollaborationAgenticProcessDefinition,
+  CollaborationStrategyDefinition,
+  SelectionStrategyDefinition,
+  TerminationStrategyDefinition,
+} from '../../src';
+import { AgentDefinitionFactory } from './agent-definition-factory';
+import { KernelDefinitionFactory } from './kernel-definition-factory';
+import { KernelFunctionDefinitionFactory } from './kernel-function-definition-factory';
 
 export class CollaborationAgenticProcessDefinitionFactory {
   static create(): CollaborationAgenticProcessDefinition {
@@ -19,14 +24,14 @@ export class CollaborationAgenticProcessDefinitionFactory {
           kernel: KernelDefinitionFactory.create(),
         }),
         termination: new TerminationStrategyDefinition({
-          agents: [ 'hostedAgent', 'remoteAgent' ],
+          agents: ['hostedAgent', 'remoteAgent'],
           agentVariableName: 'agents',
           historyVariableName: 'history',
           maximumIterations: 42,
           function: KernelFunctionDefinitionFactory.create(),
           kernel: KernelDefinitionFactory.create(),
-        })
-      })
+        }),
+      }),
     });
   }
 }
