@@ -30,16 +30,16 @@ jobs:
     strategy:
       matrix:
         node-version: ['20.x', '22.x', latest]
-    name: Build and Test (Node ${{ matrix.node }})
+    name: Build and Test (Node ${{ matrix.node-version }})
 
     steps:
     - name: Checkout Code
       uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
 
-    - name: Setup Node.js ${{ matrix.node }}
+    - name: Setup Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
       with:
-        node-version: ${{ matrix.node }}
+        node-version: ${{ matrix.node-version }}
         registry-url: 'https://registry.npmjs.org'
 
     - name: Install Dependencies
