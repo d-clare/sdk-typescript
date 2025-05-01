@@ -13,7 +13,12 @@ export default defineConfig({
       formats: ['es', 'cjs'],
     },
     rollupOptions: {
-      external: ['class-transformer', 'reflect-metadata', 'yaml'],
+      external: [
+        'class-transformer',
+        'json-schema-typed',
+        'reflect-metadata',
+        'yaml'
+      ],
     },
   },
 });
