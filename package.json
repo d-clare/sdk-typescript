@@ -1,6 +1,6 @@
 {
   "name": "@d-clare/sdk",
-  "version": "0.0.0",
+  "version": "0.0.1-ci-test",
   "type": "module",
   "license": "http://www.apache.org/licenses/LICENSE-2.0.txt",
   "main": "dist/sdk.cjs.js",
