@@ -1,0 +1,61 @@
+name: Publish
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to publish (e.g., 1.2.3 or 0.0.1-alpha.1)'
+        required: true
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+
+    name: Build and Publish
+    runs-on: ubuntu-latest
+ 
+    steps:
+    - name: Verify repository
+      if: github.repository != 'd-clare/sdk-typescript'
+      run: |
+        echo "Action was triggered outside of DClare TypeScript repo, skipping publish"
+        exit 1
+        
+    - name: Checkout Code
+      uses: actions/checkout@11bd719
+
+    - name: Setup Node.js
+      uses: actions/setup-node@49933ea
+      with:
+        registry-url: 'https://registry.npmjs.org'
+        node-version: '23'
+
+    - name: Install Dependencies
+      run: npm ci
+
+    - name: Determine version
+      id: version
+      run: |
+        if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+          echo "Using manual version input: ${{ github.event.inputs.version }}"
+          echo "version=${{ github.event.inputs.version }}" >> $GITHUB_OUTPUT
+        else
+          TAG_VERSION="${{ github.event.release.tag_name }}"
+          echo "Using release tag version: $TAG_VERSION"
+          echo "version=${TAG_VERSION#v}" >> $GITHUB_OUTPUT
+        fi
+
+    - name: Set package.json version
+      run: npm pkg set version=${{ steps.version.outputs.version }}
+
+    - name: Build Library
+      run: npm run build
+
+    - name: Publish to npm
+      run: npm publish
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
