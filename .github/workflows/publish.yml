@@ -31,8 +31,8 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
       with:
+        node-version: '23.x'
         registry-url: 'https://registry.npmjs.org'
-        node-version: '23'
 
     - name: Install Dependencies
       run: npm ci
