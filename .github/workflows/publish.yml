@@ -26,10 +26,10 @@ jobs:
         exit 1
         
     - name: Checkout Code
-      uses: actions/checkout@11bd719
+      uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
 
     - name: Setup Node.js
-      uses: actions/setup-node@49933ea
+      uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
       with:
         registry-url: 'https://registry.npmjs.org'
         node-version: '23'
