@@ -26,11 +26,11 @@ permissions:
 jobs:
   build-and-test:
 
-    name: Build and Test (Node ${{ matrix.node }})
     runs-on: ubuntu-latest
     strategy:
       matrix:
         node-version: ['20.x', '22.x', latest]
+    name: Build and Test (Node ${{ matrix.node }})
 
     steps:
     - name: Checkout Code
