@@ -17,28 +17,26 @@
 
 import { Hydrator } from '../../hydrator';
 import { EndpointDefinition } from './endpoint-definition';
-import { Type } from 'class-transformer';
 
 /**
- * Represents the definition of an HTTP transport for the Model Context Protocol
+ * Represents the definition of an HTTP transport for the Model Context Protocol (MCP).
  */
 export class McpHttpTransportDefinition extends Hydrator<McpHttpTransportDefinition> {
   constructor(model?: Partial<McpHttpTransportDefinition>) {
     super(model);
     if (model) {
-      if (model.endpoint) this.endpoint = new EndpointDefinition(model.endpoint);
+      if (model.endpoint) this.endpoint = model.endpoint;
       this.headers = model.headers ? model.headers : {};
     }
   }
 
   /**
-   * The endpoint at which to get the defined resource
+   * Gets or sets the endpoint used to connect to the MCP server.
    */
-  @Type(() => EndpointDefinition)
-  endpoint: EndpointDefinition;
+  endpoint: EndpointDefinition | string;
 
   /**
-   * A key/value mapping, if any, of the headers to use to connect to the MCP server
+   * Gets or sets a key/value mapping of the HTTP headers to send with the request, if any.
    */
   headers?: Record<string, string>;
 }

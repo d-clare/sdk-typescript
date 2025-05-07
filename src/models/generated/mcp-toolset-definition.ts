@@ -21,7 +21,7 @@ import { McpClientDefinition } from './mcp-client-definition';
 import { Type } from 'class-transformer';
 
 /**
- * Represents the definition of a toolset based on the Model Context Protocol (MCP)
+ * Represents the definition of a toolset based on the Model Context Protocol (MCP),  including how to connect to the MCP server and which client to use.
  */
 export class McpToolsetDefinition extends Hydrator<McpToolsetDefinition> {
   constructor(model?: Partial<McpToolsetDefinition>) {
@@ -33,14 +33,14 @@ export class McpToolsetDefinition extends Hydrator<McpToolsetDefinition> {
   }
 
   /**
-   * The definition of the transport to use to connect to the MCP server
+   * Gets or sets the definition of the transport to use to connect to the MCP server.
    */
   @Type(() => McpTransportDefinition)
   transport: McpTransportDefinition;
 
   /**
-   * The definition of the client to use to connect to the MCP server
+   * Gets or sets the definition of the client to use to connect to the MCP server.
    */
   @Type(() => McpClientDefinition)
-  client: McpClientDefinition;
+  client?: McpClientDefinition;
 }

@@ -21,7 +21,7 @@ import { Type } from 'class-transformer';
 import { AuthenticationScheme } from '../../enums/generated/authentication-scheme';
 
 /**
- * Represents the definition of an OAUTH2 authentication scheme
+ * Represents the definition of an OAuth 2.0 authentication scheme, including required endpoints and flow configuration.
  */
 export class OAuth2AuthenticationSchemeDefinition extends OAuth2AuthenticationSchemeDefinitionBase {
   constructor(model?: Partial<OAuth2AuthenticationSchemeDefinition>) {
@@ -29,11 +29,11 @@ export class OAuth2AuthenticationSchemeDefinition extends OAuth2AuthenticationSc
     if (model) {
       if (model.endpoints) this.endpoints = new OAuth2AuthenticationEndpointsDefinition(model.endpoints);
     }
-    this.encoding = AuthenticationScheme.OAuth2;
+    this.scheme = AuthenticationScheme.OAuth2;
   }
 
   /**
-   * The configuration of the OAUTH2 endpoints to use
+   * Gets or sets the configuration of the OAuth 2.0 endpoints to use for authorization, token exchange, and optionally revocation or introspection.
    */
   @Type(() => OAuth2AuthenticationEndpointsDefinition)
   endpoints: OAuth2AuthenticationEndpointsDefinition;

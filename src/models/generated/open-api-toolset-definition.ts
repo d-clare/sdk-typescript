@@ -20,7 +20,7 @@ import { ExternalResourceDefinition } from './external-resource-definition';
 import { Type } from 'class-transformer';
 
 /**
- * Represents the definition of a toolset based on an OpenAPI specification document
+ * Represents the definition of a toolset based on an OpenAPI specification document.
  */
 export class OpenApiToolsetDefinition extends Hydrator<OpenApiToolsetDefinition> {
   constructor(model?: Partial<OpenApiToolsetDefinition>) {
@@ -31,7 +31,7 @@ export class OpenApiToolsetDefinition extends Hydrator<OpenApiToolsetDefinition>
   }
 
   /**
-   * The OpenAPI document to use
+   * Gets or sets the external OpenAPI document used to define the toolset.
    */
   @Type(() => ExternalResourceDefinition)
   document: ExternalResourceDefinition;

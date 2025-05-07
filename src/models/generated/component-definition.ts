@@ -18,7 +18,7 @@
 import { Hydrator } from '../../hydrator';
 
 /**
- * Represents the base class for all workflow components
+ * Represents the abstract base class for all components, such as agents, runtimes, memory providers, or prompts.
  */
 export class ComponentDefinition extends Hydrator<ComponentDefinition> {
   constructor(model?: Partial<ComponentDefinition>) {

@@ -15,40 +15,28 @@
 
 //!\ This file has been generated, any modification will be lost /!\\
 
-import { Hydrator } from '../../hydrator';
-import { AuthenticationParameterPlacementDefinition } from './authentication-parameter-placement-definition';
-import { Exclude, Type } from 'class-transformer';
+import { ReferenceableComponentDefinition } from './referenceable-component-definition';
+import { Exclude } from 'class-transformer';
 
 /**
- * Represents the base class for all authentication scheme definitions
+ * Represents the abstract base class for all authentication scheme definitions, including shared properties like secret reference and parameter placement.
  */
-export class AuthenticationSchemeDefinition extends Hydrator<AuthenticationSchemeDefinition> {
+export class AuthenticationSchemeDefinition extends ReferenceableComponentDefinition {
   constructor(model?: Partial<AuthenticationSchemeDefinition>) {
     super(model);
     if (model) {
-      if (model.placement) this.placement = new AuthenticationParameterPlacementDefinition(model.placement);
+      this.extensions = model.extensions ? model.extensions : {};
     }
   }
 
   /**
-   * Gets the name of the authentication scheme
+   * Gets the name of the authentication scheme (e.g., 'apikey', 'bearer', 'oauth2', 'oidc').
    */
   @Exclude()
   scheme?: string;
 
   /**
-   * The name of the secret, if any, used to configure the authentication scheme
+   * Gets or sets a key/value mapping of the object's extension data, if any
    */
-  use?: string;
-
-  /**
-   * The definition of the placement, if any, of the resolved authentication parameter
-   */
-  @Type(() => AuthenticationParameterPlacementDefinition)
-  placement?: AuthenticationParameterPlacementDefinition;
-
-  /**
-   * Extension
-   */
-  [key: string]: any;
+  extensions?: Record<string, any>;
 }

@@ -1,7 +1,5 @@
 import {
   ApiKeyAuthenticationSchemeDefinition,
-  AuthenticationParameterPlacementDefinition,
-  AuthenticationParameterPlacementLocation,
   AuthenticationPolicyDefinition,
   BearerAuthenticationSchemeDefinition,
   OAuth2AuthenticationClientDefinition,
@@ -16,10 +14,6 @@ export class AuthenticationPolicyDefinitionFactory {
     return new AuthenticationPolicyDefinition({
       apiKey: new ApiKeyAuthenticationSchemeDefinition({
         key: 'fake-api-key',
-        placement: new AuthenticationParameterPlacementDefinition({
-          in: AuthenticationParameterPlacementLocation.Header,
-          name: 'Api-Key',
-        }),
       }),
     });
   }

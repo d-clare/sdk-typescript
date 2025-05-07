@@ -18,7 +18,7 @@
 import { Hydrator } from '../../hydrator';
 
 /**
- * Represents the configuration of OAUTH2 endpoints
+ * Represents the configuration of OAuth 2.0 endpoints used in token management flows.
  */
 export class OAuth2AuthenticationEndpointsDefinition extends Hydrator<OAuth2AuthenticationEndpointsDefinition> {
   constructor(model?: Partial<OAuth2AuthenticationEndpointsDefinition>) {
@@ -29,17 +29,17 @@ export class OAuth2AuthenticationEndpointsDefinition extends Hydrator<OAuth2Auth
   }
 
   /**
-   * The relative path to the token endpoint. Defaults to `/oauth2/token`
+   * Gets or sets the URI of the token endpoint, which is used to obtain access tokens. Defaults to `/oauth2/token`.
    */
   token: string;
 
   /**
-   * The relative path to the revocation endpoint. Defaults to `/oauth2/revoke`
+   * Gets or sets the URI of the revocation endpoint, which is used to invalidate access or refresh tokens. Defaults to `/oauth2/revoke`.
    */
   revocation: string;
 
   /**
-   * The relative path to the introspection endpoint. Defaults to `/oauth2/introspect`
+   * Gets or sets the URI of the introspection endpoint, which is used to validate and inspect access tokens. Defaults to `/oauth2/introspect`.
    */
   introspection: string;
 }

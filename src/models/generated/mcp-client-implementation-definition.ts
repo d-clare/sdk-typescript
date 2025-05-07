@@ -18,7 +18,7 @@
 import { Hydrator } from '../../hydrator';
 
 /**
- * Represents the definition of the client implementation to use to connect to an MCP server
+ * Represents the definition of the client implementation to use to connect to an MCP server.
  */
 export class McpClientImplementationDefinition extends Hydrator<McpClientImplementationDefinition> {
   constructor(model?: Partial<McpClientImplementationDefinition>) {
@@ -26,12 +26,12 @@ export class McpClientImplementationDefinition extends Hydrator<McpClientImpleme
   }
 
   /**
-   * The client name
+   * Gets or sets the name of the client implementation.
    */
   name: string;
 
   /**
-   * The version of the client to use
+   * Gets or sets the version of the client to use.
    */
   version: string;
 }

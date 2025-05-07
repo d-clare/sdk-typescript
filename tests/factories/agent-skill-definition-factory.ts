@@ -6,21 +6,21 @@ export const defaultAgentSkillDefinition = {
 };
 
 export class AgentSkillDefinitionFactory {
-  static create(name?: string, description?: string): AgentSkillDefinition {
+  static create(description?: string): AgentSkillDefinition {
     return new AgentSkillDefinition({
-      name: name || defaultAgentSkillDefinition.name,
       description: description || defaultAgentSkillDefinition.description,
     });
   }
 
-  static createCollection(length: number = 3): AgentSkillDefinition[] {
-    return Array(length)
-      .fill('')
-      .map((_, i) =>
-        AgentSkillDefinitionFactory.create(
-          `${defaultAgentSkillDefinition.name}-${i}`,
-          `${defaultAgentSkillDefinition.description}-${i}`
+  static createCollection(length: number = 3): Record<string, AgentSkillDefinition> {
+    return Object.fromEntries(
+      Array(length)
+        .fill('')
+        .map((_, i) => [
+            `${defaultAgentSkillDefinition.name}-${i}`,
+            AgentSkillDefinitionFactory.create(`${defaultAgentSkillDefinition.description}-${i}`)
+          ]
         )
-      );
+    );
   }
 }

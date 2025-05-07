@@ -22,7 +22,7 @@ import { Exclude, Type } from 'class-transformer';
 import { McpTransportType } from '../../enums/generated/mcp-transport-type';
 
 /**
- * Represents the definition of the transport to use to connect to an MCP server
+ * Represents the definition of the transport mechanism used to connect to an MCP (Model Context Protocol) server.
  */
 export class McpTransportDefinition extends Hydrator<McpTransportDefinition> {
   constructor(model?: Partial<McpTransportDefinition>) {
@@ -42,24 +42,24 @@ export class McpTransportDefinition extends Hydrator<McpTransportDefinition> {
   }
 
   /**
-   * The definition of an HTTP transport for the Model Context Protocol
+   * Gets or sets the definition of an HTTP transport for the Model Context Protocol.
    */
   @Type(() => McpHttpTransportDefinition)
   http?: McpHttpTransportDefinition;
 
   /**
-   * The definition of an STDIO transport for the Model Context Protocol
+   * Gets or sets the definition of an STDIO transport for the Model Context Protocol.
    */
   @Type(() => McpStdioTransportDefinition)
   stdio?: McpStdioTransportDefinition;
 
   /**
-   * Additional transport-specific configuration, if any
+   * Gets or sets additional transport-specific configuration options, if any.
    */
   options?: Record<string, string>;
 
   /**
-   * Gets the MCP transport's type based on which definition is present (either `Http` or `Stdio`)
+   * Gets the transport type based on which definition is present (either HTTP or STDIO).
    */
   @Exclude()
   type?: string;

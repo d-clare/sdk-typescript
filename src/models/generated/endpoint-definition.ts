@@ -31,12 +31,12 @@ export class EndpointDefinition extends Hydrator<EndpointDefinition> {
   }
 
   /**
-   * The endpoint's uri
+   * Gets or sets the endpoint URI.
    */
-  uri: string;
+  uri?: string;
 
   /**
-   * The endpoint's authentication policy, if any
+   * Gets or sets the authentication policy required to access the API endpoint, if any.
    */
   @Type(() => AuthenticationPolicyDefinition)
   authentication?: AuthenticationPolicyDefinition;

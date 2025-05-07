@@ -21,7 +21,7 @@ import { OpenApiToolsetDefinition } from './open-api-toolset-definition';
 import { Exclude, Expose, Type } from 'class-transformer';
 
 /**
- * Represents the definition of a toolset
+ * Represents the definition of a toolset, which may be described using either the Model Context Protocol (MCP) or an OpenAPI specification document.
  */
 export class ToolsetDefinition extends ReferenceableComponentDefinition {
   constructor(model?: Partial<ToolsetDefinition>) {
@@ -33,20 +33,20 @@ export class ToolsetDefinition extends ReferenceableComponentDefinition {
   }
 
   /**
-   * The definition of a toolset based on the Model Context Protocol (MCP)
+   * Gets or sets the definition of a toolset based on the Model Context Protocol (MCP).
    */
   @Type(() => McpToolsetDefinition)
   mcp?: McpToolsetDefinition;
 
   /**
-   * The definition of a toolset based on an OpenAPI specification document
+   * Gets or sets the definition of a toolset based on an OpenAPI specification document.
    */
   @Expose({ name: 'openapi' })
   @Type(() => OpenApiToolsetDefinition)
   openApi?: OpenApiToolsetDefinition;
 
   /**
-   * Gets the toolset's type based on which definition is present (either MCP or OpenAPI)
+   * Gets the type of the toolset based on which definition is present (either 'mcp' or 'openapi').
    */
   @Exclude()
   type?: string;

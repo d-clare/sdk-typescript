@@ -18,7 +18,7 @@
 import { Hydrator } from '../../hydrator';
 
 /**
- * Represents the definition of an STDIO transport for the Model Context Protocol
+ * Represents the definition of a STDIO transport for the Model Context Protocol (MCP), used to launch and communicate with an external process via standard input/output streams.
  */
 export class McpStdioTransportDefinition extends Hydrator<McpStdioTransportDefinition> {
   constructor(model?: Partial<McpStdioTransportDefinition>) {
@@ -29,12 +29,12 @@ export class McpStdioTransportDefinition extends Hydrator<McpStdioTransportDefin
   }
 
   /**
-   * The Command to execute the MCP tool
+   * Gets or sets the command to execute the MCP tool.
    */
   command: string;
 
   /**
-   * A list of arguments, if any, to pass to the command.
+   * Gets or sets an optional list of arguments to pass to the command.
    */
   arguments?: string[];
 }

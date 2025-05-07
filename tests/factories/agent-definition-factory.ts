@@ -1,21 +1,15 @@
 import {
-  A2AChannelConfiguration,
-  AgentCommunicationChannelDefinition,
   AgentDefinition,
   RemoteAgentDefinition,
 } from '../../src';
-import { EndpointDefinitionFactory } from './endpoint-definition-factory';
+import { AgentCommunicationChannelDefinitionFactory } from './agent-communication-channel-definition-factory';
 import { HostedAgentDefinitionFactory } from './hosted-agent-definition-factory';
 
 export class AgentDefinitionFactory {
   static createRemote(): AgentDefinition {
     return new AgentDefinition({
       remote: new RemoteAgentDefinition({
-        channel: new AgentCommunicationChannelDefinition({
-          a2A: new A2AChannelConfiguration({
-            endpoint: EndpointDefinitionFactory.create(),
-          }),
-        }),
+        channel: AgentCommunicationChannelDefinitionFactory.createA2A()
       }),
     });
   }

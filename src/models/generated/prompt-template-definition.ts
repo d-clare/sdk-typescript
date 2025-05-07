@@ -15,15 +15,15 @@
 
 //!\ This file has been generated, any modification will be lost /!\\
 
-import { Hydrator } from '../../hydrator';
+import { ReferenceableComponentDefinition } from './referenceable-component-definition';
 import { InputVariableDefinition } from './input-variable-definition';
 import { OutputVariableDefinition } from './output-variable-definition';
 import { Type } from 'class-transformer';
 
 /**
- * Represents the definition of a prompt template
+ * Represents the definition of a prompt template, including its format, content, input variables, and expected output.
  */
-export class PromptTemplateDefinition extends Hydrator<PromptTemplateDefinition> {
+export class PromptTemplateDefinition extends ReferenceableComponentDefinition {
   constructor(model?: Partial<PromptTemplateDefinition>) {
     super(model);
     if (model) {
@@ -35,23 +35,23 @@ export class PromptTemplateDefinition extends Hydrator<PromptTemplateDefinition>
   }
 
   /**
-   * The template content to use for prompt generation, including placeholders for input variables
+   * Gets or sets the raw content of the prompt template.
    */
   content: string;
 
   /**
-   * The optional format of the prompt template
+   * Gets or sets the format used for interpreting the prompt template (e.g., 'semantic-kernel', 'handlebars', 'liquid', or 'echo').
    */
-  format?: string;
+  format: string;
 
   /**
-   * A list of input variables, if any, used within the template
+   * Gets or sets a list of input variables, if any, that are referenced within the template.
    */
   @Type(() => InputVariableDefinition)
   inputVariables?: InputVariableDefinition[];
 
   /**
-   * The definition of the expected output variable, if any, for the result produced by the prompt
+   * Gets or sets the definition of the output variable produced by the template, if any.
    */
   @Type(() => OutputVariableDefinition)
   outputVariable?: OutputVariableDefinition;

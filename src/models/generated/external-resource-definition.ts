@@ -17,27 +17,25 @@
 
 import { Hydrator } from '../../hydrator';
 import { EndpointDefinition } from './endpoint-definition';
-import { Type } from 'class-transformer';
 
 /**
- * Represents the definition of an external resource
+ * Represents the definition of an external resource that can be fetched via an endpoint.
  */
 export class ExternalResourceDefinition extends Hydrator<ExternalResourceDefinition> {
   constructor(model?: Partial<ExternalResourceDefinition>) {
     super(model);
     if (model) {
-      if (model.endpoint) this.endpoint = new EndpointDefinition(model.endpoint);
+      if (model.endpoint) this.endpoint = model.endpoint;
     }
   }
 
   /**
-   * The external resource's name, if any
+   * Gets or sets an optional name for the external resource.
    */
   name?: string;
 
   /**
-   * The endpoint at which to get the defined resource
+   * Gets or sets the endpoint definition used to retrieve the external resource.
    */
-  @Type(() => EndpointDefinition)
-  endpoint: EndpointDefinition;
+  endpoint: EndpointDefinition | string;
 }

@@ -18,15 +18,18 @@
 import { Hydrator } from '../../hydrator';
 import { AuthenticationPolicyDefinition } from './authentication-policy-definition';
 import { ToolsetDefinition } from './toolset-definition';
-import { KernelFunctionDefinition } from './kernel-function-definition';
-import { KernelDefinition } from './kernel-definition';
+import { PromptTemplateDefinition } from './prompt-template-definition';
+import { FunctionDefinition } from './function-definition';
 import { MemoryDefinition } from './memory-definition';
+import { EmbeddingModelDefinition } from './embedding-model-definition';
+import { VectorStoreDefinition } from './vector-store-definition';
+import { KnowledgeGraphDefinition } from './knowledge-graph-definition';
+import { LlmDefinition } from './llm-definition';
 import { AgentDefinition } from './agent-definition';
-import { ProcessDefinition } from './process-definition';
 import { RecordTransform } from '../../transformers/record-transform';
 
 /**
- * Represents the definition of a collection of reusable components
+ * Represents a collection of reusable components that can be referenced within a workflow.
  */
 export class ComponentCollectionDefinition extends Hydrator<ComponentCollectionDefinition> {
   constructor(model?: Partial<ComponentCollectionDefinition>) {
@@ -51,22 +54,22 @@ export class ComponentCollectionDefinition extends Hydrator<ComponentCollectionD
             {} as Record<string, ToolsetDefinition>
           )
         : {};
+      this.prompts = model.prompts
+        ? Object.entries(model.prompts).reduce(
+            (acc, [key, m]) => {
+              acc[key] = new PromptTemplateDefinition(m);
+              return acc;
+            },
+            {} as Record<string, PromptTemplateDefinition>
+          )
+        : {};
       this.functions = model.functions
         ? Object.entries(model.functions).reduce(
             (acc, [key, m]) => {
-              acc[key] = new KernelFunctionDefinition(m);
+              acc[key] = new FunctionDefinition(m);
               return acc;
             },
-            {} as Record<string, KernelFunctionDefinition>
-          )
-        : {};
-      this.kernels = model.kernels
-        ? Object.entries(model.kernels).reduce(
-            (acc, [key, m]) => {
-              acc[key] = new KernelDefinition(m);
-              return acc;
-            },
-            {} as Record<string, KernelDefinition>
+            {} as Record<string, FunctionDefinition>
           )
         : {};
       this.memories = model.memories
@@ -78,6 +81,42 @@ export class ComponentCollectionDefinition extends Hydrator<ComponentCollectionD
             {} as Record<string, MemoryDefinition>
           )
         : {};
+      this.embedders = model.embedders
+        ? Object.entries(model.embedders).reduce(
+            (acc, [key, m]) => {
+              acc[key] = new EmbeddingModelDefinition(m);
+              return acc;
+            },
+            {} as Record<string, EmbeddingModelDefinition>
+          )
+        : {};
+      this.vectors = model.vectors
+        ? Object.entries(model.vectors).reduce(
+            (acc, [key, m]) => {
+              acc[key] = new VectorStoreDefinition(m);
+              return acc;
+            },
+            {} as Record<string, VectorStoreDefinition>
+          )
+        : {};
+      this.graphs = model.graphs
+        ? Object.entries(model.graphs).reduce(
+            (acc, [key, m]) => {
+              acc[key] = new KnowledgeGraphDefinition(m);
+              return acc;
+            },
+            {} as Record<string, KnowledgeGraphDefinition>
+          )
+        : {};
+      this.llms = model.llms
+        ? Object.entries(model.llms).reduce(
+            (acc, [key, m]) => {
+              acc[key] = new LlmDefinition(m);
+              return acc;
+            },
+            {} as Record<string, LlmDefinition>
+          )
+        : {};
       this.agents = model.agents
         ? Object.entries(model.agents).reduce(
             (acc, [key, m]) => {
@@ -87,62 +126,71 @@ export class ComponentCollectionDefinition extends Hydrator<ComponentCollectionD
             {} as Record<string, AgentDefinition>
           )
         : {};
-      this.processes = model.processes
-        ? Object.entries(model.processes).reduce(
-            (acc, [key, m]) => {
-              acc[key] = new ProcessDefinition(m);
-              return acc;
-            },
-            {} as Record<string, ProcessDefinition>
-          )
-        : {};
     }
   }
 
   /**
-   * A list containing the secrets, if any, used to securely configure components
+   * Gets or sets a list containing the secrets, if any, used to securely configure components.
    */
   secrets?: string[];
 
   /**
-   * A name/definition mapping, if any, of reusable authentication policies
+   * Gets or sets a mapping of reusable authentication policies, keyed by name.
    */
   @RecordTransform(AuthenticationPolicyDefinition)
   authentications?: Record<string, AuthenticationPolicyDefinition>;
 
   /**
-   * A name/definition mapping, if any, of reusable toolsets
+   * Gets or sets a mapping of reusable toolsets, keyed by name.
    */
   @RecordTransform(ToolsetDefinition)
   toolsets?: Record<string, ToolsetDefinition>;
 
   /**
-   * A name/definition mapping, if any, of reusable functions
+   * Gets or sets a mapping of reusable prompt template definitions, keyed by name.
    */
-  @RecordTransform(KernelFunctionDefinition)
-  functions?: Record<string, KernelFunctionDefinition>;
+  @RecordTransform(PromptTemplateDefinition)
+  prompts?: Record<string, PromptTemplateDefinition>;
 
   /**
-   * A name/definition mapping, if any, of reusable kernels
+   * Gets or sets a mapping of reusable functions, keyed by name.
    */
-  @RecordTransform(KernelDefinition)
-  kernels?: Record<string, KernelDefinition>;
+  @RecordTransform(FunctionDefinition)
+  functions?: Record<string, FunctionDefinition>;
 
   /**
-   * A name/definition mapping, if any, of reusable memories
+   * Gets or sets a mapping of reusable memory definitions, keyed by name.
    */
   @RecordTransform(MemoryDefinition)
   memories?: Record<string, MemoryDefinition>;
 
   /**
-   * A name/definition mapping, if any, of reusable agents
+   * Gets or sets a mapping of reusable embedding model definitions, keyed by name.
+   */
+  @RecordTransform(EmbeddingModelDefinition)
+  embedders?: Record<string, EmbeddingModelDefinition>;
+
+  /**
+   * Gets or sets a mapping of reusable vector store definitions, keyed by name.
+   */
+  @RecordTransform(VectorStoreDefinition)
+  vectors?: Record<string, VectorStoreDefinition>;
+
+  /**
+   * Gets or sets a mapping of reusable knowledge graph definitions, keyed by name.
+   */
+  @RecordTransform(KnowledgeGraphDefinition)
+  graphs?: Record<string, KnowledgeGraphDefinition>;
+
+  /**
+   * Gets or sets a mapping of reusable Large Language Model (LLM) definitions, keyed by name.
+   */
+  @RecordTransform(LlmDefinition)
+  llms?: Record<string, LlmDefinition>;
+
+  /**
+   * Gets or sets a mapping of reusable agent definitions, keyed by name.
    */
   @RecordTransform(AgentDefinition)
   agents?: Record<string, AgentDefinition>;
-
-  /**
-   * A name/definition mapping, if any, of reusable agentic processes
-   */
-  @RecordTransform(ProcessDefinition)
-  processes?: Record<string, ProcessDefinition>;
 }

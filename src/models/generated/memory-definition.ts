@@ -15,55 +15,42 @@
 
 //!\ This file has been generated, any modification will be lost /!\\
 
-import { Hydrator } from '../../hydrator';
-import { FileMemoryDefinition } from './file-memory-definition';
-import { KeyValueMemoryDefinition } from './key-value-memory-definition';
-import { StaticMemoryDefinition } from './static-memory-definition';
-import { VectorMemoryDefinition } from './vector-memory-definition';
-import { Exclude, Expose, Type } from 'class-transformer';
+import { ReferenceableComponentDefinition } from './referenceable-component-definition';
+import { MemoryProviderDefinition } from './memory-provider-definition';
+import { FunctionDefinition } from './function-definition';
+import { Type } from 'class-transformer';
 
 /**
- * Represents the definition of a memory capability
+ * Represents the definition of a conversation memory
  */
-export class MemoryDefinition extends Hydrator<MemoryDefinition> {
+export class MemoryDefinition extends ReferenceableComponentDefinition {
   constructor(model?: Partial<MemoryDefinition>) {
     super(model);
     if (model) {
-      if (model.file) this.file = new FileMemoryDefinition(model.file);
-      if (model.keyValue) this.keyValue = new KeyValueMemoryDefinition(model.keyValue);
-      if (model.static) this.static = new StaticMemoryDefinition(model.static);
-      if (model.vector) this.vector = new VectorMemoryDefinition(model.vector);
+      if (model.provider) this.provider = new MemoryProviderDefinition(model.provider);
+      if (model.summarizer) this.summarizer = new FunctionDefinition(model.summarizer);
     }
   }
 
   /**
-   * The definition of a file-backed memory that loads entries from structured files in the local or remote file system
+   * Gets or sets the definition of the memory provider to use.
    */
-  @Type(() => FileMemoryDefinition)
-  file?: FileMemoryDefinition;
+  @Type(() => MemoryProviderDefinition)
+  provider: MemoryProviderDefinition;
 
   /**
-   * The definition of a key-value store memory that retrieves entries based on keys or tags
+   * Gets or sets the retention strategy to use (e.g., 'window', 'full', 'summary').
    */
-  @Expose({ name: 'keyvalue' })
-  @Type(() => KeyValueMemoryDefinition)
-  keyValue?: KeyValueMemoryDefinition;
+  strategy: string;
 
   /**
-   * The definition of a static memory that returns predefined values without kernel lookup
+   * Gets or sets the maximum number of exchanges to retain in memory when using the 'window' strategy.
    */
-  @Type(() => StaticMemoryDefinition)
-  static?: StaticMemoryDefinition;
+  windowSize?: number;
 
   /**
-   * The definition of a vector memory that retrieves entries using semantic similarity and vector search
+   * Gets or sets the function used to summarize memory when using the 'summary' strategy.
    */
-  @Type(() => VectorMemoryDefinition)
-  vector?: VectorMemoryDefinition;
-
-  /**
-   * Gets the memory's type based on which definition is present
-   */
-  @Exclude()
-  type?: string;
+  @Type(() => FunctionDefinition)
+  summarizer?: FunctionDefinition;
 }

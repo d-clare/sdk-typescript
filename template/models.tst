@@ -119,7 +119,7 @@ ${
                 },
                 Constructor = new List<string>()
                 {
-                    "this.encoding = AuthenticationScheme.OAuth2;",
+                    "this.scheme = AuthenticationScheme.OAuth2;",
                 }
             }
         },
@@ -132,7 +132,7 @@ ${
                 },
                 Constructor = new List<string>()
                 {
-                    "this.encoding = AuthenticationScheme.OpenIDConnect;",
+                    "this.scheme = AuthenticationScheme.OpenIDConnect;",
                 }
             }
         }
@@ -239,6 +239,18 @@ ${
 
     bool isRecordProp(Property p) => p.Type.Name.StartsWith("Record") && !p.Type.TypeArguments.All(arg => arg.IsPrimitive || CleanupName(arg.Name) == "any");
 
+    IEnumerable<Typewriter.CodeModel.Type> GetImportedTypes(Record r, bool excludeOneOf = false) {
+        return r.Properties
+            .Where(p => !excludeOneOf || !CleanupName(p.Type.OriginalName).StartsWith("OneOf"))
+            .SelectMany(p => !p.Type.IsGeneric ?
+              new[] { p.Type } as IEnumerable<Type> :
+              p.Type.FullName.Contains("System") ?
+                p.Type.TypeArguments :
+                (new[] { p.Type } as IEnumerable<Type>).Concat(p.Type.TypeArguments)
+            )
+            .Where(t => RequiresImport(r, t));
+    }
+
     string Imports(Record r)
     {
         string output = "";
@@ -251,15 +263,7 @@ ${
         {
             output += Indent(0, $"import {{ Hydrator }} from '../../hydrator';");
         }
-        var importedTypes = r.Properties
-            .SelectMany(p => !p.Type.IsGeneric ?
-              new[] { p.Type } as IEnumerable<Type> :
-              p.Type.FullName.Contains("System") ?
-                p.Type.TypeArguments :
-                (new[] { p.Type } as IEnumerable<Type>).Concat(p.Type.TypeArguments)
-            )
-            .Where(t => RequiresImport(r, t));
-        output += importedTypes
+        output += GetImportedTypes(r)
             .Select(t => 
                 CleanupName(t.OriginalName) != "JsonSchema" ?
                     Indent(0, $"import {{ {CleanupName(t.Name)} }} from '{(CleanupName(t.Name) == "Duration" ? ".." : ".")}/{GetFileName(t)}';") :
@@ -270,7 +274,14 @@ ${
             ;
         var hasIgnoredProperties = r.Properties.Any(p => p.Attributes.Any(a => a.Name == "JsonIgnore") && !IsOverride(r, p));
         var hasNamedProperties = r.Properties.Any(p => p.Attributes.Any(a => a.Name == "JsonPropertyName" && a.Value != p.name));
-        var hasMappedProperties = importedTypes.Any(t => CleanupName(t.OriginalName) != "JsonSchema") && !r.Properties.All(p => p.Type.IsPrimitive || (p.Type.IsGeneric && p.Type.TypeArguments.All(arg => arg.IsPrimitive)) || isRecordProp(p));
+        var hasMappedProperties = GetImportedTypes(r, true).Any(t => 
+            CleanupName(t.OriginalName) != "JsonSchema") && 
+            !r.Properties.All(p => 
+                p.Type.IsPrimitive || 
+                (p.Type.IsGeneric && p.Type.TypeArguments.All(arg => arg.IsPrimitive)
+            ) || 
+            isRecordProp(p)
+        );
         if (hasIgnoredProperties || hasNamedProperties || hasMappedProperties)
         {
             var transformerImports = new List<string>();
@@ -430,10 +441,21 @@ ${
         return output;
     }
 
-    string ConvertTypeName(string typeName) => typeName
-        .Replace(" | null", "")
-        .Replace("Uri", "string") /* URL ? */
-        ;
+    string ConvertTypeName(string typeName) {
+        var output = typeName
+            .Replace(" | null", "")
+            .Replace("Uri", "string") /* URL ? */
+            ;
+        var replacements = new (string pattern, string replacement)[] 
+        {
+            (@"OneOf<\s*(\w*)\s*,\s*(\w*)\s*>", "$1 | $2"),
+        };
+        foreach (var (pattern, replacement) in replacements)
+        {
+            output = Regex.Replace(output, pattern, replacement);
+        }
+        return output;
+    }
 
     string Property(Property p)
     {
@@ -457,6 +479,7 @@ ${
             && underlyingType != "JsonSchema"
             && underlyingType != "any"
             && CleanupName(p.Type.OriginalName) != "Uri"
+            && !CleanupName(p.Type.OriginalName).StartsWith("OneOf")
         )
         {
             if (!p.Type.Name.StartsWith("Record"))

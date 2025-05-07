@@ -18,7 +18,7 @@
 import { ComponentDefinition } from './component-definition';
 
 /**
- * Represents a component definition that can be referenced
+ * Represents a reusable component definition that can either be declared inline or referenced by name.
  */
 export class ReferenceableComponentDefinition extends ComponentDefinition {
   constructor(model?: Partial<ReferenceableComponentDefinition>) {
@@ -26,6 +26,7 @@ export class ReferenceableComponentDefinition extends ComponentDefinition {
   }
 
   /**
+   * Gets or sets the name of a previously defined component to reference instead of defining it inline.  If this property is set, the inline definition is ignored.
    */
   use?: string;
 }

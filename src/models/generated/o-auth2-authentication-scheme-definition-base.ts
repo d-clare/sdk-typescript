@@ -22,7 +22,7 @@ import { OAuth2TokenDefinition } from './o-auth2-token-definition';
 import { Type } from 'class-transformer';
 
 /**
- * Represents the base class for all authentication schemes based on OAUTH2
+ * Represents the base class for all OAuth 2.0 authentication scheme definitions, including standard fields for authority, client credentials, grant type, scopes, and token exchange options.
  */
 export class OAuth2AuthenticationSchemeDefinitionBase extends AuthenticationSchemeDefinition {
   constructor(model?: Partial<OAuth2AuthenticationSchemeDefinitionBase>) {
@@ -39,60 +39,60 @@ export class OAuth2AuthenticationSchemeDefinitionBase extends AuthenticationSche
   }
 
   /**
-   * The uri that references the OAUTH2 authority to use
+   * Gets or sets the URI of the OAuth 2.0 authority (authorization server).
    */
   authority: string;
 
   /**
-   * The grant type to use. See @see {@link OAuth2GrantType}
+   * Gets or sets the OAuth 2.0 grant type to use for authentication.
    */
   grant?: string;
 
   /**
-   * The definition of the client to use
+   * Gets or sets the client credentials used for authentication.
    */
   @Type(() => OAuth2AuthenticationClientDefinition)
   client?: OAuth2AuthenticationClientDefinition;
 
   /**
-   * The configuration of the authentication request to perform
+   * Gets or sets additional request parameters for the authentication request.
    */
   @Type(() => OAuth2AuthenticationRequestDefinition)
   request?: OAuth2AuthenticationRequestDefinition;
 
   /**
-   * A list, if any, that contains valid issuers that will be used to check against the issuer of generated tokens
+   * Gets or sets a list of expected valid issuers to verify against the token's issuer.
    */
   issuers?: string[];
 
   /**
-   * The scopes, if any, to request the token for
+   * Gets or sets the scopes to request in the token.
    */
   scopes?: string[];
 
   /**
-   * The audiences, if any, to request the token for
+   * Gets or sets the audiences to request in the token.
    */
   audiences?: string[];
 
   /**
-   * The username to use. Used only if @see {@link Models.Authentication.OAuth2AuthenticationSchemeDefinitionBase.Grant} is @see {@link OAuth2GrantType.Password}
+   * Gets or sets the username for the resource owner. Only applicable when the grant type is 'password'.
    */
   username?: string;
 
   /**
-   * The password to use. Used only if @see {@link Models.Authentication.OAuth2AuthenticationSchemeDefinitionBase.Grant} is @see {@link OAuth2GrantType.Password}
+   * Gets or sets the password for the resource owner. Only applicable when the grant type is 'password'.
    */
   password?: string;
 
   /**
-   * The security token that represents the identity of the party on behalf of whom the request is being made. Used only if @see {@link Models.Authentication.OAuth2AuthenticationSchemeDefinitionBase.Grant} is @see {@link OAuth2GrantType.TokenExchange}, in which case it is required
+   * Gets or sets the subject token for token exchange. Required when using the 'token_exchange' grant type.
    */
   @Type(() => OAuth2TokenDefinition)
   subject?: OAuth2TokenDefinition;
 
   /**
-   * The security token that represents the identity of the acting party. Typically, this will be the party that is authorized to use the requested security token and act on behalf of the subject.  Used only if @see {@link Models.Authentication.OAuth2AuthenticationSchemeDefinitionBase.Grant} is @see {@link OAuth2GrantType.TokenExchange}, in which case it is required
+   * Gets or sets the actor token used for token exchange to represent the acting party.
    */
   @Type(() => OAuth2TokenDefinition)
   actor?: OAuth2TokenDefinition;

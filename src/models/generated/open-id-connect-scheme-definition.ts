@@ -19,11 +19,11 @@ import { OAuth2AuthenticationSchemeDefinitionBase } from './o-auth2-authenticati
 import { AuthenticationScheme } from '../../enums/generated/authentication-scheme';
 
 /**
- * Represents the definition of an OpenIDConnect authentication scheme
+ * Represents the definition of an OpenID Connect (OIDC) authentication scheme, based on OAuth 2.0, supporting identity tokens and discovery.
  */
 export class OpenIDConnectSchemeDefinition extends OAuth2AuthenticationSchemeDefinitionBase {
   constructor(model?: Partial<OpenIDConnectSchemeDefinition>) {
     super(model);
-    this.encoding = AuthenticationScheme.OpenIDConnect;
+    this.scheme = AuthenticationScheme.OpenIDConnect;
   }
 }

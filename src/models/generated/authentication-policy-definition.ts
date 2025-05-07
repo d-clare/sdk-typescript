@@ -23,7 +23,7 @@ import { OpenIDConnectSchemeDefinition } from './open-id-connect-scheme-definiti
 import { Exclude, Expose, Type } from 'class-transformer';
 
 /**
- * Represents the definition of an authentication policy
+ * Represents the definition of an authentication policy used to authorize access to external services or APIs.
  */
 export class AuthenticationPolicyDefinition extends ReferenceableComponentDefinition {
   constructor(model?: Partial<AuthenticationPolicyDefinition>) {
@@ -37,33 +37,33 @@ export class AuthenticationPolicyDefinition extends ReferenceableComponentDefini
   }
 
   /**
-   * Gets the configured authentication scheme
+   * Gets the configured authentication scheme based on the first non-null scheme defined.
    */
   @Exclude()
   scheme?: string;
 
   /**
-   * The `ApiKey` authentication scheme to use, if any
+   * Gets or sets the API key authentication scheme to use, if any.
    */
   @Expose({ name: 'apikey' })
   @Type(() => ApiKeyAuthenticationSchemeDefinition)
   apiKey?: ApiKeyAuthenticationSchemeDefinition;
 
   /**
-   * The `Bearer` authentication scheme to use, if any
+   * Gets or sets the Bearer token authentication scheme to use, if any.
    */
   @Type(() => BearerAuthenticationSchemeDefinition)
   bearer?: BearerAuthenticationSchemeDefinition;
 
   /**
-   * The `OAUTH2` authentication scheme to use, if any
+   * Gets or sets the OAuth 2.0 authentication scheme to use, if any.
    */
   @Expose({ name: 'oauth2' })
   @Type(() => OAuth2AuthenticationSchemeDefinition)
   oAuth2?: OAuth2AuthenticationSchemeDefinition;
 
   /**
-   * The `OIDC` authentication scheme to use, if any
+   * Gets or sets the OpenID Connect (OIDC) authentication scheme to use, if any.
    */
   @Type(() => OpenIDConnectSchemeDefinition)
   oidc?: OpenIDConnectSchemeDefinition;

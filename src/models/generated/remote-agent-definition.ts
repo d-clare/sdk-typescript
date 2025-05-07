@@ -20,7 +20,7 @@ import { AgentCommunicationChannelDefinition } from './agent-communication-chann
 import { Type } from 'class-transformer';
 
 /**
- * Represents the definition of a remote agent
+ * Represents the definition of a remote AI agent.
  */
 export class RemoteAgentDefinition extends Hydrator<RemoteAgentDefinition> {
   constructor(model?: Partial<RemoteAgentDefinition>) {
@@ -31,7 +31,7 @@ export class RemoteAgentDefinition extends Hydrator<RemoteAgentDefinition> {
   }
 
   /**
-   * The communication channel used to interact with the remote agent
+   * Gets or sets the communication channel used to reach the remote agent.
    */
   @Type(() => AgentCommunicationChannelDefinition)
   channel: AgentCommunicationChannelDefinition;

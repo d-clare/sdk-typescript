@@ -19,7 +19,7 @@ import { Hydrator } from '../../hydrator';
 import { type JSONSchema as JsonSchema } from 'json-schema-typed';
 
 /**
- * Represents the definition of an output variable
+ * Represents the definition of an output variable returned by a function or prompt.
  */
 export class OutputVariableDefinition extends Hydrator<OutputVariableDefinition> {
   constructor(model?: Partial<OutputVariableDefinition>) {
@@ -27,12 +27,12 @@ export class OutputVariableDefinition extends Hydrator<OutputVariableDefinition>
   }
 
   /**
-   * The variable's description, if any
+   * Gets or sets a human-readable description of the output variable, if any.
    */
   description?: string;
 
   /**
-   * The JSON schema, if any, used to describe the variable
+   * Gets or sets a JSON schema that describes the structure and constraints of the output variable.
    */
   schema?: JsonSchema;
 }

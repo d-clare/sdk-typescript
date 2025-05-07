@@ -19,7 +19,7 @@ import { Hydrator } from '../../hydrator';
 import { OAuth2RequestEncoding } from '../../enums/generated/o-auth2-request-encoding';
 
 /**
- * Represents the configuration of an OAUTH2 authentication request
+ * Represents the configuration of an OAuth 2.0 authentication request, including the expected content encoding.
  */
 export class OAuth2AuthenticationRequestDefinition extends Hydrator<OAuth2AuthenticationRequestDefinition> {
   constructor(model?: Partial<OAuth2AuthenticationRequestDefinition>) {
@@ -28,7 +28,7 @@ export class OAuth2AuthenticationRequestDefinition extends Hydrator<OAuth2Authen
   }
 
   /**
-   * The encoding of the authentication request. Defaults to 'application/x-www-form-urlencoded'. See @see {@link OAuth2RequestEncoding}
+   * Gets or sets the encoding format to use for the authentication request payload.  Defaults to 'application/x-www-form-urlencoded'.
    */
   encoding: string;
 }

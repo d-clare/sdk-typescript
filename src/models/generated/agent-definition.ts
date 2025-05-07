@@ -15,15 +15,15 @@
 
 //!\ This file has been generated, any modification will be lost /!\\
 
-import { ReferenceableComponentDefinition } from './referenceable-component-definition';
+import { Hydrator } from '../../hydrator';
 import { HostedAgentDefinition } from './hosted-agent-definition';
 import { RemoteAgentDefinition } from './remote-agent-definition';
 import { Exclude, Type } from 'class-transformer';
 
 /**
- * Represents the definition of an agent
+ * Represents the definition of an AI agent
  */
-export class AgentDefinition extends ReferenceableComponentDefinition {
+export class AgentDefinition extends Hydrator<AgentDefinition> {
   constructor(model?: Partial<AgentDefinition>) {
     super(model);
     if (model) {
@@ -33,20 +33,20 @@ export class AgentDefinition extends ReferenceableComponentDefinition {
   }
 
   /**
-   * An object used to configure an hosted agent
+   * Gets the agent's type
+   */
+  @Exclude()
+  type?: string;
+
+  /**
+   * Gets or sets the configuration for an hosted agent
    */
   @Type(() => HostedAgentDefinition)
   hosted?: HostedAgentDefinition;
 
   /**
-   * An object used to configure a remote agent
+   * Gets or sets the configuration for a remote agent
    */
   @Type(() => RemoteAgentDefinition)
   remote?: RemoteAgentDefinition;
-
-  /**
-   * Gets the agent's type
-   */
-  @Exclude()
-  type?: string;
 }

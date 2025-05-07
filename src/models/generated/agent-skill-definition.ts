@@ -18,7 +18,7 @@
 import { Hydrator } from '../../hydrator';
 
 /**
- * Represents the definition of an agent's skill
+ * Represents the definition of an agent's skill, including an optional human-readable description  that can be used to inform selection or routing logic.
  */
 export class AgentSkillDefinition extends Hydrator<AgentSkillDefinition> {
   constructor(model?: Partial<AgentSkillDefinition>) {
@@ -26,12 +26,7 @@ export class AgentSkillDefinition extends Hydrator<AgentSkillDefinition> {
   }
 
   /**
-   * The skill's name
-   */
-  name: string;
-
-  /**
-   * A short human-readable description of the agent's skill or capability<para></para>  This information may be used to evaluate and select the most appropriate agent for a given task
+   * Gets or sets a short, human-readable description of the agent's skill or capability.  This information may be used to evaluate and select the most appropriate agent for a given task.
    */
   description?: string;
 }

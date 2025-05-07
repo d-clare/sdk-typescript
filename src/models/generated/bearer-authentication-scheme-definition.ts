@@ -19,7 +19,7 @@ import { AuthenticationSchemeDefinition } from './authentication-scheme-definiti
 import { AuthenticationScheme } from '../../enums/generated/authentication-scheme';
 
 /**
- * Represents the definition of a bearer authentication scheme
+ * Represents the definition of a bearer token authentication scheme, where a token is passed in the Authorization header.
  */
 export class BearerAuthenticationSchemeDefinition extends AuthenticationSchemeDefinition {
   constructor(model?: Partial<BearerAuthenticationSchemeDefinition>) {
@@ -28,7 +28,7 @@ export class BearerAuthenticationSchemeDefinition extends AuthenticationSchemeDe
   }
 
   /**
-   * The bearer token used for authentication
+   * Gets or sets the bearer token used for authentication.
    */
   token: string;
 }

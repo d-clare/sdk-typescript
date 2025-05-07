@@ -18,7 +18,7 @@
 import { Hydrator } from '../../hydrator';
 
 /**
- * Represents the definition of an OAUTH2 token
+ * Represents the definition of an OAuth 2.0 token, typically used in token exchange or delegation flows.
  */
 export class OAuth2TokenDefinition extends Hydrator<OAuth2TokenDefinition> {
   constructor(model?: Partial<OAuth2TokenDefinition>) {
@@ -26,12 +26,12 @@ export class OAuth2TokenDefinition extends Hydrator<OAuth2TokenDefinition> {
   }
 
   /**
-   * The security token to use
+   * Gets or sets the actual security token value to use (e.g., JWT or opaque token).
    */
   token: string;
 
   /**
-   * The type of security token to use
+   * Gets or sets the type of the token (e.g., 'access_token', 'id_token', or custom type).
    */
   type: string;
 }

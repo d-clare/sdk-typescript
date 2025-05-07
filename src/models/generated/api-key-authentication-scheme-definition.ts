@@ -19,7 +19,7 @@ import { AuthenticationSchemeDefinition } from './authentication-scheme-definiti
 import { AuthenticationScheme } from '../../enums/generated/authentication-scheme';
 
 /**
- * Represents the definition of an API key authentication scheme
+ * Represents the definition of an API key authentication scheme, typically used via headers or query parameters.
  */
 export class ApiKeyAuthenticationSchemeDefinition extends AuthenticationSchemeDefinition {
   constructor(model?: Partial<ApiKeyAuthenticationSchemeDefinition>) {
@@ -28,7 +28,7 @@ export class ApiKeyAuthenticationSchemeDefinition extends AuthenticationSchemeDe
   }
 
   /**
-   * The key used for authentication
+   * Gets or sets the name of the key used for authentication.
    */
   key: string;
 }

@@ -19,7 +19,7 @@ import { Hydrator } from '../../hydrator';
 import { type JSONSchema as JsonSchema } from 'json-schema-typed';
 
 /**
- * Represents the definition of an input variable
+ * Represents the definition of an input variable used in a prompt template or function call.
  */
 export class InputVariableDefinition extends Hydrator<InputVariableDefinition> {
   constructor(model?: Partial<InputVariableDefinition>) {
@@ -27,37 +27,37 @@ export class InputVariableDefinition extends Hydrator<InputVariableDefinition> {
   }
 
   /**
-   * The variable's name
+   * Gets or sets the name of the variable.
    */
   name: string;
 
   /**
-   * The variable's description, if any
+   * Gets or sets a human-readable description of the variable, if any.
    */
   description?: string;
 
   /**
-   * The variable's default value, if any
+   * Gets or sets a default value for the variable, used if no input is provided.
    */
   default?: any;
 
   /**
-   * The a sample value for the variable, if any
+   * Gets or sets a sample value to illustrate typical usage.
    */
   sample?: any;
 
   /**
-   * A boolean indicating whether or not the variable is required
+   * Gets or sets a value indicating whether this variable is required.
    */
   required: boolean;
 
   /**
-   * A boolean indicating whether or not to handle the variable value as potential dangerous content
+   * Gets or sets a value indicating whether to allow potentially dangerous content in the variable.
    */
   allowDangerousContent: boolean;
 
   /**
-   * The JSON schema, if any, used to describe the variable
+   * Gets or sets a JSON schema definition describing the structure and constraints of the variable.
    */
   schema?: JsonSchema;
 }

@@ -16,54 +16,84 @@
 //!\ This file has been generated, any modification will be lost /!\\
 
 import { Hydrator } from '../../hydrator';
+import { PromptTemplateDefinition } from './prompt-template-definition';
 import { AgentSkillDefinition } from './agent-skill-definition';
-import { KernelDefinition } from './kernel-definition';
-import { AgentMemoryCapabilityDefinition } from './agent-memory-capability-definition';
+import { MemoryDefinition } from './memory-definition';
+import { KnowledgeDefinition } from './knowledge-definition';
+import { LlmDefinition } from './llm-definition';
+import { ToolsetDefinition } from './toolset-definition';
 import { Type } from 'class-transformer';
+import { RecordTransform } from '../../transformers/record-transform';
 
 /**
- * Represents the definition of an hosted agent
+ * Represents the definition of a hosted AI agent, including its instructions, skills, memory, knowledge, and runtime.
  */
 export class HostedAgentDefinition extends Hydrator<HostedAgentDefinition> {
   constructor(model?: Partial<HostedAgentDefinition>) {
     super(model);
     if (model) {
-      this.skills = model.skills ? model.skills.map((m: any) => new AgentSkillDefinition(m)) : [];
-      if (model.kernel) this.kernel = new KernelDefinition(model.kernel);
-      if (model.memory) this.memory = new AgentMemoryCapabilityDefinition(model.memory);
+      if (model.instructions) this.instructions = model.instructions;
+      this.skills = model.skills
+        ? Object.entries(model.skills).reduce(
+            (acc, [key, m]) => {
+              acc[key] = new AgentSkillDefinition(m);
+              return acc;
+            },
+            {} as Record<string, AgentSkillDefinition>
+          )
+        : {};
+      if (model.memory) this.memory = new MemoryDefinition(model.memory);
+      if (model.knowledge) this.knowledge = new KnowledgeDefinition(model.knowledge);
+      if (model.llm) this.llm = new LlmDefinition(model.llm);
+      this.toolsets = model.toolsets
+        ? Object.entries(model.toolsets).reduce(
+            (acc, [key, m]) => {
+              acc[key] = new ToolsetDefinition(m);
+              return acc;
+            },
+            {} as Record<string, ToolsetDefinition>
+          )
+        : {};
     }
   }
 
   /**
-   * A reference to the agent definition to extend, if any
-   */
-  extends?: string;
-
-  /**
-   * A short human-readable description of the agent's role or purpose, which is used for documentation, UI display, and prompt composition
+   * Gets or sets an optional human-readable description of the agent's purpose or role.
    */
   description?: string;
 
   /**
-   * The specific instructions that guide the agent's behavior
+   * Gets or sets the union value representing either a prompt template or a raw instruction string.
    */
-  instructions?: string;
+  instructions: PromptTemplateDefinition | string;
 
   /**
-   * A list containing the agent's skills, if any
+   * Gets or sets the dictionary of named skills the agent supports.
    */
-  @Type(() => AgentSkillDefinition)
-  skills?: AgentSkillDefinition[];
+  @RecordTransform(AgentSkillDefinition)
+  skills?: Record<string, AgentSkillDefinition>;
 
   /**
-   * The definition of the kernel that powers the agent's capabilities
+   * Gets or sets the memory definition used by the agent, if any.
    */
-  @Type(() => KernelDefinition)
-  kernel: KernelDefinition;
+  @Type(() => MemoryDefinition)
+  memory?: MemoryDefinition;
 
   /**
-   * The definition of the agent's memory, if any
+   * Gets or sets the knowledge configuration used by the agent, if any.
    */
-  @Type(() => AgentMemoryCapabilityDefinition)
-  memory?: AgentMemoryCapabilityDefinition;
+  @Type(() => KnowledgeDefinition)
+  knowledge?: KnowledgeDefinition;
+
+  /**
+   * Gets or sets the definition of the LLM used by the agent.
+   */
+  @Type(() => LlmDefinition)
+  llm: LlmDefinition;
+
+  /**
+   * Gets or sets the toolsets the agent is capable of using.
+   */
+  @RecordTransform(ToolsetDefinition)
+  toolsets?: Record<string, ToolsetDefinition>;
 }

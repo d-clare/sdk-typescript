@@ -21,7 +21,7 @@ import { Duration } from '../duration';
 import { Type } from 'class-transformer';
 
 /**
- * Represents the definition of the client to use to connect to an MCP server
+ * Represents the definition of the client to use to connect to an MCP (Model Context Protocol) server.
  */
 export class McpClientDefinition extends Hydrator<McpClientDefinition> {
   constructor(model?: Partial<McpClientDefinition>) {
@@ -33,18 +33,18 @@ export class McpClientDefinition extends Hydrator<McpClientDefinition> {
   }
 
   /**
-   * The definition of the client implementation to use to connect to an MCP server
+   * Gets or sets the definition of the client implementation to use to connect to an MCP server.
    */
   @Type(() => McpClientImplementationDefinition)
-  implementation: McpClientImplementationDefinition;
+  implementation?: McpClientImplementationDefinition;
 
   /**
-   * The version of the MCP protocol to use
+   * Gets or sets the version of the MCP protocol to use.
    */
   protocolVersion: string;
 
   /**
-   * The duration, if any, after which requests to the MCP tool time out
+   * Gets or sets the duration, if any, after which requests to the MCP tool time out.
    */
   @Type(() => Duration)
   timeout?: Duration;

@@ -18,7 +18,7 @@
 import { Hydrator } from '../../hydrator';
 
 /**
- * Represents the definition of an OAUTH2 client
+ * Represents the definition of an OAuth 2.0 client, including its credentials and authentication method.
  */
 export class OAuth2AuthenticationClientDefinition extends Hydrator<OAuth2AuthenticationClientDefinition> {
   constructor(model?: Partial<OAuth2AuthenticationClientDefinition>) {
@@ -26,22 +26,22 @@ export class OAuth2AuthenticationClientDefinition extends Hydrator<OAuth2Authent
   }
 
   /**
-   * The OAUTH2 `client_id` to use. Required if 'Authentication' has NOT been set to 'none'.
+   * Gets or sets the OAuth 2.0 `client_id` to use. Required unless the client authentication method is set to 'none'.
    */
   id?: string;
 
   /**
-   * The OAUTH2 `client_secret` to use, if any
+   * Gets or sets the OAuth 2.0 `client_secret` to use, if any.
    */
   secret?: string;
 
   /**
-   * A JWT containing a signed assertion with the application credentials
+   * Gets or sets a signed JWT assertion to authenticate the client instead of using a client_secret.
    */
   assertion?: string;
 
   /**
-   * The authentication method to use to authenticate the client. Defaults to 'client_secret_post'. See @see {@link OAuth2ClientAuthenticationMethod}
+   * Gets or sets the authentication method used by the client. Defaults to 'client_secret_post'.
    */
   authentication?: string;
 }
