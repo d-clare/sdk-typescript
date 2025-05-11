@@ -18,7 +18,6 @@
 import { Hydrator } from '../../hydrator';
 import { VectorCollectionDefinition } from './vector-collection-definition';
 import { KnowledgeGraphDefinition } from './knowledge-graph-definition';
-import { Expose } from 'class-transformer';
 import { RecordTransform } from '../../transformers/record-transform';
 
 /**

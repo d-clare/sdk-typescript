@@ -7,13 +7,13 @@ export class VectorCollectionDefinitionFactory {
     return new VectorCollectionDefinition({
       id: 'fake-collection',
       embedding: EmbeddingModelDefinitionFactory.create(),
-      store: VectorStoreDefinitionFactory.create()
+      store: VectorStoreDefinitionFactory.create(),
     });
   }
 
   static createCollection(): Record<string, VectorCollectionDefinition> {
     return {
-      'fake-collection': this.create()
+      'fake-collection': this.create(),
     };
   }
 }

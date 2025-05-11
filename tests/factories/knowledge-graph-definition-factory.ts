@@ -12,7 +12,7 @@ export class KnowledgeGraphDefinitionFactory {
 
   static createCollection(): Record<string, KnowledgeGraphDefinition> {
     return {
-      'fake-definition': this.create()
-    }
+      'fake-definition': this.create(),
+    };
   }
 }
