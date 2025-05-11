@@ -1,6 +1,6 @@
-import { FunctionDefinition } from "../../src";
-import { LlmDefinitionFactory } from "./llm-definition-factory";
-import { PromptTemplateDefinitionFactory } from "./prompt-template-definition-factory";
+import { FunctionDefinition } from '../../src';
+import { LlmDefinitionFactory } from './llm-definition-factory';
+import { PromptTemplateDefinitionFactory } from './prompt-template-definition-factory';
 
 export class FunctionDefinitionFactory {
   static create(): FunctionDefinition {

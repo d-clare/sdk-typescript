@@ -43,6 +43,16 @@ export class EmbeddingModelDefinition extends ReferenceableComponentDefinition {
   model: string;
 
   /**
+   * Gets or sets the dimensionality of the vectors produced by the embedding model.
+   */
+  dimensions: number;
+
+  /**
+   * Gets or sets the maximum number of tokens that can be processed by the embedding model in a single input.
+   */
+  maxTokens: number;
+
+  /**
    * Gets or sets the definition of the API used to invoke the embedding model.
    */
   @Type(() => EmbeddingApiDefinition)

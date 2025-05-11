@@ -25,8 +25,8 @@ export { AgentDefinition } from './agent-definition';
 export { AgentSkillDefinition } from './agent-skill-definition';
 export { AuthenticationPolicyDefinition } from './authentication-policy-definition';
 export { AuthenticationSchemeDefinition } from './authentication-scheme-definition';
-export { ComponentCollectionDefinition } from './component-collection-definition';
 export { ComponentDefinition } from './component-definition';
+export { ComponentDefinitionCollection } from './component-definition-collection';
 export { EmbeddingApiDefinition } from './embedding-api-definition';
 export { EmbeddingModelDefinition } from './embedding-model-definition';
 export { EmbeddingModelProviderDefinition } from './embedding-model-provider-definition';
@@ -58,6 +58,7 @@ export { ReferenceableComponentDefinition } from './referenceable-component-defi
 export { RemoteAgentDefinition } from './remote-agent-definition';
 export { TaskDefinition } from './task-definition';
 export { ToolsetDefinition } from './toolset-definition';
+export { VectorCollectionDefinition } from './vector-collection-definition';
 export { VectorStoreDefinition } from './vector-store-definition';
 export { VectorStoreProviderDefinition } from './vector-store-provider-definition';
 export { WorkflowDefinition } from './workflow-definition';

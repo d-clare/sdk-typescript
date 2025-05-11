@@ -17,10 +17,9 @@ export class AgentSkillDefinitionFactory {
       Array(length)
         .fill('')
         .map((_, i) => [
-            `${defaultAgentSkillDefinition.name}-${i}`,
-            AgentSkillDefinitionFactory.create(`${defaultAgentSkillDefinition.description}-${i}`)
-          ]
-        )
+          `${defaultAgentSkillDefinition.name}-${i}`,
+          AgentSkillDefinitionFactory.create(`${defaultAgentSkillDefinition.description}-${i}`),
+        ])
     );
   }
 }

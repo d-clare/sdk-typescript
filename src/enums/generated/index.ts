@@ -1,3 +1,4 @@
+export { ComponentDefinitionCollectionExtensions } from './component-definition-collection-extensions';
 export { AgentCommunicationChannelType } from './agent-communication-channel-type';
 export { AgentType } from './agent-type';
 export { AuthenticationScheme } from './authentication-scheme';

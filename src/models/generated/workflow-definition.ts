@@ -17,7 +17,7 @@
 
 import { Hydrator } from '../../hydrator';
 import { WorkflowDefinitionMetadata } from './workflow-definition-metadata';
-import { ComponentCollectionDefinition } from './component-collection-definition';
+import { ComponentDefinitionCollection } from './component-definition-collection';
 import { TaskDefinition } from './task-definition';
 import { Type } from 'class-transformer';
 import { RecordTransform } from '../../transformers/record-transform';
@@ -29,8 +29,8 @@ export class WorkflowDefinition extends Hydrator<WorkflowDefinition> {
   constructor(model?: Partial<WorkflowDefinition>) {
     super(model);
     if (model) {
-      if (model.metadata) this.metadata = new WorkflowDefinitionMetadata(model.metadata);
-      if (model.components) this.components = new ComponentCollectionDefinition(model.components);
+      if (model.document) this.document = new WorkflowDefinitionMetadata(model.document);
+      if (model.components) this.components = new ComponentDefinitionCollection(model.components);
       this.do = model.do
         ? Object.entries(model.do).reduce(
             (acc, [key, m]) => {
@@ -47,13 +47,13 @@ export class WorkflowDefinition extends Hydrator<WorkflowDefinition> {
    * Gets or sets the metadata used to describe with the workflow definition.
    */
   @Type(() => WorkflowDefinitionMetadata)
-  metadata: WorkflowDefinitionMetadata;
+  document: WorkflowDefinitionMetadata;
 
   /**
    * Gets or sets a collection of reusable components, if any, that can be referenced within the workflow.
    */
-  @Type(() => ComponentCollectionDefinition)
-  components?: ComponentCollectionDefinition;
+  @Type(() => ComponentDefinitionCollection)
+  components?: ComponentDefinitionCollection;
 
   /**
    * Gets or sets the tasks to execute as part of the workflow. The key represents the task name, and the value is its definition.

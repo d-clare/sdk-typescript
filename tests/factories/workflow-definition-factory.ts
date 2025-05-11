@@ -1,5 +1,5 @@
-import { WorkflowDefinition, WorkflowDefinitionMetadata } from "../../src";
-import { TaskDefinitionFactory } from "./task-definition-factory";
+import { WorkflowDefinition, WorkflowDefinitionMetadata } from '../../src';
+import { TaskDefinitionFactory } from './task-definition-factory';
 
 export class WorkflowDefinitionFactory {
   static create(): WorkflowDefinition {
@@ -10,7 +10,7 @@ export class WorkflowDefinitionFactory {
         version: '1.0.0',
         tags: ['tag1', 'tag2'],
       }),
-      do: TaskDefinitionFactory.createDo().sequentially
+      do: TaskDefinitionFactory.createDo().sequentially,
     });
   }
 }

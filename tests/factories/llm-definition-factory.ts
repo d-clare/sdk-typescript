@@ -1,5 +1,5 @@
-import { LlmApiDefinition, LlmDefinition, LlmProvider, LlmProviderDefinition } from "../../src";
-import { EndpointDefinitionFactory } from "./endpoint-definition-factory";
+import { LlmApiDefinition, LlmDefinition, LlmProvider, LlmProviderDefinition } from '../../src';
+import { EndpointDefinitionFactory } from './endpoint-definition-factory';
 
 export class LlmDefinitionFactory {
   static create(): LlmDefinition {

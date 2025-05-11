@@ -1,5 +1,13 @@
-import { AgentCallDefinition, AskTaskDefinition, CallTaskDefinition, DoTaskDefinition, ForLoopDefinition, ForTaskDefinition, SetTaskDefinition } from "../../src";
-import { FunctionDefinitionFactory } from "./function-definition-factory";
+import {
+  AgentCallDefinition,
+  AskTaskDefinition,
+  CallTaskDefinition,
+  DoTaskDefinition,
+  ForLoopDefinition,
+  ForTaskDefinition,
+  SetTaskDefinition,
+} from '../../src';
+import { FunctionDefinitionFactory } from './function-definition-factory';
 
 export class TaskDefinitionFactory {
   static createAsk(): AskTaskDefinition {
@@ -16,7 +24,7 @@ export class TaskDefinitionFactory {
       call: FunctionDefinitionFactory.create(),
       with: {
         'fake-parameter-key-1': 'fake-parameter-value-1',
-      }
+      },
     });
   }
 
@@ -24,17 +32,17 @@ export class TaskDefinitionFactory {
     return new SetTaskDefinition({
       set: {
         'fake-parameter-key-1': 'fake-parameter-value-1',
-      }
+      },
     });
   }
 
   static createDo(): DoTaskDefinition {
     return new DoTaskDefinition({
-      sequentially:{ 
+      sequentially: {
         'subtask-1': this.createAsk(),
         'subtask-2': this.createCall(),
-        'subtask-3': this.createSet()
-      }
+        'subtask-3': this.createSet(),
+      },
     });
   }
 
@@ -48,8 +56,8 @@ export class TaskDefinitionFactory {
       do: {
         'subtask-1': this.createAsk(),
         'subtask-2': this.createCall(),
-        'subtask-3': this.createSet()
-      }
+        'subtask-3': this.createSet(),
+      },
     });
   }
 }

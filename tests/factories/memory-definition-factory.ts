@@ -1,8 +1,4 @@
-import {
-  MemoryDefinition,
-  MemoryProviderDefinition,
-  MemoryStrategy,
-} from '../../src';
+import { MemoryDefinition, MemoryProviderDefinition, MemoryStrategy } from '../../src';
 import { FunctionDefinitionFactory } from './function-definition-factory';
 
 export class MemoryDefinitionFactory {
@@ -10,7 +6,7 @@ export class MemoryDefinitionFactory {
     return new MemoryDefinition({
       provider: new MemoryProviderDefinition({
         name: 'fake-name',
-        configuration: []
+        configuration: [],
       }),
       strategy: MemoryStrategy.Summary,
       summarizer: FunctionDefinitionFactory.create(),

@@ -16,10 +16,10 @@
 //!\ This file has been generated, any modification will be lost /!\\
 
 import { Hydrator } from '../../hydrator';
-import { EmbeddingModelDefinition } from './embedding-model-definition';
-import { VectorStoreDefinition } from './vector-store-definition';
+import { VectorCollectionDefinition } from './vector-collection-definition';
 import { KnowledgeGraphDefinition } from './knowledge-graph-definition';
-import { Type } from 'class-transformer';
+import { Expose } from 'class-transformer';
+import { RecordTransform } from '../../transformers/record-transform';
 
 /**
  * Represents the knowledge configuration used by the agent, including embeddings, vector retrieval, and knowledge graphs.
@@ -28,27 +28,36 @@ export class KnowledgeDefinition extends Hydrator<KnowledgeDefinition> {
   constructor(model?: Partial<KnowledgeDefinition>) {
     super(model);
     if (model) {
-      if (model.embedding) this.embedding = new EmbeddingModelDefinition(model.embedding);
-      if (model.store) this.store = new VectorStoreDefinition(model.store);
-      if (model.graph) this.graph = new KnowledgeGraphDefinition(model.graph);
+      this.vectors = model.vectors
+        ? Object.entries(model.vectors).reduce(
+            (acc, [key, m]) => {
+              acc[key] = new VectorCollectionDefinition(m);
+              return acc;
+            },
+            {} as Record<string, VectorCollectionDefinition>
+          )
+        : {};
+      this.graphs = model.graphs
+        ? Object.entries(model.graphs).reduce(
+            (acc, [key, m]) => {
+              acc[key] = new KnowledgeGraphDefinition(m);
+              return acc;
+            },
+            {} as Record<string, KnowledgeGraphDefinition>
+          )
+        : {};
     }
   }
 
   /**
-   * Gets or sets the embedding model used to vectorize textual input.
+   * Gets or sets the vector record collections available to the agent, each defined by its embedding model and backing vector store.
    */
-  @Type(() => EmbeddingModelDefinition)
-  embedding: EmbeddingModelDefinition;
+  @RecordTransform(VectorCollectionDefinition)
+  vectors?: Record<string, VectorCollectionDefinition>;
 
   /**
-   * Gets or sets the vector store used to persist and retrieve embedded representations.
+   * Gets or sets the knowledge graphs available to the agent, used for concept resolution and relationship traversal.
    */
-  @Type(() => VectorStoreDefinition)
-  store: VectorStoreDefinition;
-
-  /**
-   * Gets or sets the knowledge graph used for concept resolution and semantic traversal.
-   */
-  @Type(() => KnowledgeGraphDefinition)
-  graph?: KnowledgeGraphDefinition;
+  @RecordTransform(KnowledgeGraphDefinition)
+  graphs?: Record<string, KnowledgeGraphDefinition>;
 }

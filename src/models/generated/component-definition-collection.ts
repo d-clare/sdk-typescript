@@ -23,6 +23,7 @@ import { FunctionDefinition } from './function-definition';
 import { MemoryDefinition } from './memory-definition';
 import { EmbeddingModelDefinition } from './embedding-model-definition';
 import { VectorStoreDefinition } from './vector-store-definition';
+import { VectorCollectionDefinition } from './vector-collection-definition';
 import { KnowledgeGraphDefinition } from './knowledge-graph-definition';
 import { LlmDefinition } from './llm-definition';
 import { AgentDefinition } from './agent-definition';
@@ -31,8 +32,8 @@ import { RecordTransform } from '../../transformers/record-transform';
 /**
  * Represents a collection of reusable components that can be referenced within a workflow.
  */
-export class ComponentCollectionDefinition extends Hydrator<ComponentCollectionDefinition> {
-  constructor(model?: Partial<ComponentCollectionDefinition>) {
+export class ComponentDefinitionCollection extends Hydrator<ComponentDefinitionCollection> {
+  constructor(model?: Partial<ComponentDefinitionCollection>) {
     super(model);
     if (model) {
       this.secrets = model.secrets ? model.secrets : [];
@@ -81,8 +82,8 @@ export class ComponentCollectionDefinition extends Hydrator<ComponentCollectionD
             {} as Record<string, MemoryDefinition>
           )
         : {};
-      this.embedders = model.embedders
-        ? Object.entries(model.embedders).reduce(
+      this.embeddingModels = model.embeddingModels
+        ? Object.entries(model.embeddingModels).reduce(
             (acc, [key, m]) => {
               acc[key] = new EmbeddingModelDefinition(m);
               return acc;
@@ -90,13 +91,22 @@ export class ComponentCollectionDefinition extends Hydrator<ComponentCollectionD
             {} as Record<string, EmbeddingModelDefinition>
           )
         : {};
-      this.vectors = model.vectors
-        ? Object.entries(model.vectors).reduce(
+      this.vectorStores = model.vectorStores
+        ? Object.entries(model.vectorStores).reduce(
             (acc, [key, m]) => {
               acc[key] = new VectorStoreDefinition(m);
               return acc;
             },
             {} as Record<string, VectorStoreDefinition>
+          )
+        : {};
+      this.vectorCollections = model.vectorCollections
+        ? Object.entries(model.vectorCollections).reduce(
+            (acc, [key, m]) => {
+              acc[key] = new VectorCollectionDefinition(m);
+              return acc;
+            },
+            {} as Record<string, VectorCollectionDefinition>
           )
         : {};
       this.graphs = model.graphs
@@ -168,13 +178,19 @@ export class ComponentCollectionDefinition extends Hydrator<ComponentCollectionD
    * Gets or sets a mapping of reusable embedding model definitions, keyed by name.
    */
   @RecordTransform(EmbeddingModelDefinition)
-  embedders?: Record<string, EmbeddingModelDefinition>;
+  embeddingModels?: Record<string, EmbeddingModelDefinition>;
 
   /**
    * Gets or sets a mapping of reusable vector store definitions, keyed by name.
    */
   @RecordTransform(VectorStoreDefinition)
-  vectors?: Record<string, VectorStoreDefinition>;
+  vectorStores?: Record<string, VectorStoreDefinition>;
+
+  /**
+   * Gets or sets a mapping of reusable vector collection definitions, keyed by name.
+   */
+  @RecordTransform(VectorCollectionDefinition)
+  vectorCollections?: Record<string, VectorCollectionDefinition>;
 
   /**
    * Gets or sets a mapping of reusable knowledge graph definitions, keyed by name.

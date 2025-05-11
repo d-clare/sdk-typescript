@@ -32,6 +32,7 @@ export class HostedAgentDefinition extends Hydrator<HostedAgentDefinition> {
   constructor(model?: Partial<HostedAgentDefinition>) {
     super(model);
     if (model) {
+      if (model.documentation) this.documentation = model.documentation;
       if (model.instructions) this.instructions = model.instructions;
       this.skills = model.skills
         ? Object.entries(model.skills).reduce(
@@ -58,9 +59,19 @@ export class HostedAgentDefinition extends Hydrator<HostedAgentDefinition> {
   }
 
   /**
+   * Gets or sets the human-readable title of the agent.
+   */
+  title?: string;
+
+  /**
    * Gets or sets an optional human-readable description of the agent's purpose or role.
    */
   description?: string;
+
+  /**
+   * Gets or sets a reference to the agent's documentation, either as a URI or an inline description.
+   */
+  documentation?: string | string;
 
   /**
    * Gets or sets the union value representing either a prompt template or a raw instruction string.

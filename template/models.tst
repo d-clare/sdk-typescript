@@ -448,7 +448,7 @@ ${
             ;
         var replacements = new (string pattern, string replacement)[] 
         {
-            (@"OneOf<\s*(\w*)\s*,\s*(\w*)\s*>", "$1 | $2"),
+            (@"OneOf\??<\s*(\w*)\s*,\s*(\w*)\s*>", "$1 | $2"),
         };
         foreach (var (pattern, replacement) in replacements)
         {

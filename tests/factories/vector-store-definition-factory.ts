@@ -1,4 +1,4 @@
-import { VectorStoreDefinition, VectorStoreProvider, VectorStoreProviderDefinition } from "../../src";
+import { VectorStoreDefinition, VectorStoreProvider, VectorStoreProviderDefinition } from '../../src';
 
 export class VectorStoreDefinitionFactory {
   static create(): VectorStoreDefinition {

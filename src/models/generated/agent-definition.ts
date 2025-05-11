@@ -15,7 +15,7 @@
 
 //!\ This file has been generated, any modification will be lost /!\\
 
-import { Hydrator } from '../../hydrator';
+import { ReferenceableComponentDefinition } from './referenceable-component-definition';
 import { HostedAgentDefinition } from './hosted-agent-definition';
 import { RemoteAgentDefinition } from './remote-agent-definition';
 import { Exclude, Type } from 'class-transformer';
@@ -23,7 +23,7 @@ import { Exclude, Type } from 'class-transformer';
 /**
  * Represents the definition of an AI agent
  */
-export class AgentDefinition extends Hydrator<AgentDefinition> {
+export class AgentDefinition extends ReferenceableComponentDefinition {
   constructor(model?: Partial<AgentDefinition>) {
     super(model);
     if (model) {

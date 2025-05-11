@@ -15,13 +15,4 @@
 
 //!\ This file has been generated, any modification will be lost /!\\
 
-export enum EmbeddingModelProvider {
-  AzureOpenAI = `azure-openai`,
-  Gemini = `gemini`,
-  Generic = `generic`,
-  HuggingFace = `hugging-face`,
-  MistralAI = `mistral`,
-  Ollama = `ollama`,
-  Onnx = `onnx`,
-  OpenAI = `openai`,
-}
+export enum ComponentDefinitionCollectionExtensions {}

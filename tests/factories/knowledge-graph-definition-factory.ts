@@ -1,4 +1,4 @@
-import { KnowledgeGraphDefinition, KnowledgeGraphProvider, KnowledgeGraphProviderDefinition } from "../../src";
+import { KnowledgeGraphDefinition, KnowledgeGraphProvider, KnowledgeGraphProviderDefinition } from '../../src';
 
 export class KnowledgeGraphDefinitionFactory {
   static create(): KnowledgeGraphDefinition {
@@ -8,5 +8,11 @@ export class KnowledgeGraphDefinitionFactory {
         configuration: [],
       }),
     });
+  }
+
+  static createCollection(): Record<string, KnowledgeGraphDefinition> {
+    return {
+      'fake-definition': this.create()
+    }
   }
 }

@@ -1,11 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import {
-  AgentDefinition,
-  EndpointDefinition,
-  Serialization,
-  ToolsetDefinition,
-  WorkflowDefinition
-} from '../../src';
+import { AgentDefinition, EndpointDefinition, Serialization, ToolsetDefinition, WorkflowDefinition } from '../../src';
 import { defaultEndpointUri, EndpointDefinitionFactory } from './endpoint-definition-factory';
 import { AgentDefinitionFactory } from './agent-definition-factory';
 import { WorkflowDefinitionFactory } from './workflow-definition-factory';
@@ -68,30 +62,30 @@ export const serializationTest = (language: string) => {
 
     it(`should (de)serialize hosted agent definition using ${language}`, () => {
       const sourceObj = AgentDefinitionFactory.createHosted();
-  
+
       const serialized = serializer(sourceObj);
       const deserialized = deserializer(AgentDefinition, serialized);
-  
+
       expect(deserialized).toBeDefined();
       expect(deserialized).toEqual(sourceObj);
     });
-  
+
     it(`should (de)serialize remote agent definition using ${language}`, () => {
       const sourceObj = AgentDefinitionFactory.createRemote();
-  
+
       const serialized = serializer(sourceObj);
       const deserialized = deserializer(AgentDefinition, serialized);
-  
+
       expect(deserialized).toBeDefined();
       expect(deserialized).toEqual(sourceObj);
     });
-  
+
     it(`should (de)serialize workflow definition using ${language}`, () => {
       const sourceObj = WorkflowDefinitionFactory.create();
-  
+
       const serialized = serializer(sourceObj);
       const deserialized = deserializer(WorkflowDefinition, serialized);
-  
+
       expect(deserialized).toBeDefined();
       expect(deserialized).toEqual(sourceObj);
     });
